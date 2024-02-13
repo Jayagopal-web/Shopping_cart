@@ -21,7 +21,7 @@ const signUp = e => {
         localStorage.setItem('formData', JSON.stringify(formData));
         document.querySelector('form').reset();
         document.getElementById('fname').focus();
-        alert("Account Created.\n\nPlease Sign In using the link below.");
+        alert("Account Created.\n\nPlease Log In using the link below.");
     }
     /* Else alert message */
     else{

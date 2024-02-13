@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+    <main>
+        <!-- Sign in form -->
+        <h2>LOG IN FORM</h2>
+        <form role="form" onsubmit="signIn(event);" autocomplete="off">
+            <!-- Inputs -->
+            <div class="form-group">
+                <input type="email" name="email" id="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="pwd" id="pwd" placeholder="Password" required>
+            </div>
+            <!-- Submit button -->
+            <div class="form-group">
+                <button type="submit">Sign In</button>
+            </div>
+        </form>
+        <!-- signup link -->
+        <p>Don't have an account? <a href="./signup.html">Sign Up</a> here</p>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+</html>

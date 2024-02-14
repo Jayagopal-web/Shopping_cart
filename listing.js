@@ -95,5 +95,5 @@ function searchCategory(category){
 }
 
 function singleProduct(id){
-    window.location.href = `./single.html?${id}`;
+    window.location.href = `./singlepage.html?productId=${id}`;
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Estop Shop</title>
+</head>
+<body onload="searchCategory()">
+    <div class="grid-listing-container">
+        
+        <div class="navbar-search">
+            <div class="logo">
+                <Span>Eshop Spot</Span>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Ex. Smartphones" autocomplete="off">
+            </div>
+            <div class="login-btn">
+                <button type="button" class="btn" id="login">Login</button>
+            </div>
+        </div>
+
+        <div class="listing" id="listing">
+            <div class="filters">
+                <div class="category">Category</div>
+                <div class="price">Price</div>
+                <div class="review">Customer review</div>
+            </div>
+            <div class="listing-container" id="listing-container">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="listing.js" defer></script>
+</body>
+</html>

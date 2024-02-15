@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Stylesheet CSS -->
     <link rel="stylesheet" href="style.css">
     <title>Estop Shop</title>
 </head>
-<body onload="searchCategory()">
+<body>
+    <!-- Gird Main Container --><!-- Grid Row 2 -->
     <div class="grid-listing-container">
         
+        <!-- Grid FIRST row START here -->
         <div class="navbar-search">
             <div class="logo">
-                <Span>Eshop Spot</Span>
+                <a href="./index.html">
+                    <Span>Eshop Spot</Span>
+                </a>
             </div>
             <div class="search-bar">
                 <input type="text" placeholder="Ex. Smartphones" autocomplete="off">
@@ -20,7 +25,9 @@
                 <button type="button" class="btn" id="login">Login</button>
             </div>
         </div>
+        <!-- Grid FIRST row END here -->
 
+        <!-- Grid SECOND row START here -->
         <div class="listing" id="listing">
             <div class="filters">
                 <div class="category">Category</div>
@@ -28,11 +35,15 @@
                 <div class="review">Customer review</div>
             </div>
             <div class="listing-container" id="listing-container">
-                
+                <!-- Generate products from JavaScript -->
             </div>
         </div>
-    </div>
+         <!-- Grid SECOND row END here -->
 
+    </div>
+    <!-- Gird Main Container(Closed) -->
+
+    <!-- Js Script -->
     <script src="listing.js" defer></script>
 </body>
 </html>

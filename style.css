@@ -21,6 +21,9 @@ body{
     background-color: #e5e7eb;
 }
 
+/* ------------START----------- */
+/* --------index.html----------- */
+/* Grid 3 rows -> Navbar, Welcome Text & Categories container */
 .grid-main-container{
     height: 100%;
     display: grid;
@@ -28,12 +31,14 @@ body{
     grid-template-rows: 70px .7fr 1fr;
 }
 
+/* Navbar -> Grid first row */
 .navbar{
     background-color: var(--bg-color);
     color: var(--white);
 
     grid-row: 1/span 1;
 }
+/* Welcome Text and Search bar -> grid second row */
 .welcome-text{
     background-color: var(--white);
     grid-row: 2/span 1;
@@ -47,12 +52,12 @@ body{
     font-size: 3.8rem;
     font-weight: 900;
 }
+/* Category Container -> Grid third row */
 .categories-container{
-    /* background-color: aquamarine; */
     grid-row: 3/span 1;
 }
 
-
+/* Set navbar grid 3 columns */
 .navbar{
     display: grid;
     grid-template-columns: 1fr 100px 100px;
@@ -61,12 +66,19 @@ body{
     padding: 1rem;
 }
 
+/* Eshop spot Text */
 .logo{
+    cursor: pointer;
     grid-column: 1/ span 1;
     font-size: 1.7rem;
     font-weight: 700;
     letter-spacing: .6px;
 }
+.logo a{
+    text-decoration: none;
+    color: var(--white);
+}
+/* Username and Login button */
 .signup-btn{
     grid-column: 2/ span 1;
 }
@@ -87,11 +99,11 @@ body{
     color: var(--bg-color);
 }
 
+/* Search bar */
 .search-bar {
     text-align: center;
     width: 100%;
 }
-/* welcome-text */
 .search-bar input{
     
     font-size: 1.2rem;
@@ -100,9 +112,7 @@ body{
     width: 40%;
 }
 
-.categories-container{
-    padding: 1rem;
-}
+/* individual product card style */
 .card{
     cursor: pointer;
     padding: 1rem;
@@ -119,18 +129,39 @@ body{
     box-shadow: 0 3px 16px 0 rgba(0,0,0,.11);
 }
 
+
+/* set Categories container four columns */
 .categories-container{
+    padding: 1rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
+/* --------index.html----------- */
+/* ------------END----------- */
 
+/* ------------START----------- */
+/* --------listing.html----------- */
+/* Grid 2 rows -> Navbar & listing container */
 .grid-listing-container{
     height: 100vh;
     display: grid;
     grid-template-rows: 70px 1fr;
 }
 
+/* Set navbar grid column 3*/
+.navbar-search{
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: .2fr 1fr 100px;
+    align-items: center;
+}
+.navbar-search{
+    background-color: var(--bg-color);
+    color: var(--white);
+}
+
+/*  container, set grid column 2. first column for Filter & second column for listing container(Product container)*/
 .listing{
     display: grid;
     grid-template-columns: 250px 1fr;
@@ -145,23 +176,12 @@ body{
     grid-column: 2/span 1;
 }
 
-
+/* Listing container(Product container) set column 3 */
 .listing-container{
     padding: 1rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    /* grid-auto-rows: 500px; */
-}
-.navbar-search{
-    padding: 1rem;
-    display: grid;
-    grid-template-columns: .2fr 1fr 100px;
-    align-items: center;
-}
-.navbar-search{
-    background-color: var(--bg-color);
-    color: var(--white);
 }
 
 .filters{
@@ -169,7 +189,5 @@ body{
     flex-direction: column;
     gap: 20px;
 }
-
-.hide{
-    display: none;
-}
+/* --------listing.html----------- */
+/* ------------END----------- */

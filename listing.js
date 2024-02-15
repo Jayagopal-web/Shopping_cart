@@ -114,5 +114,5 @@ function searchCategory(category){
 
 // Redirect to individual product page
 function singleProduct(id){
-    window.location.href = `./single.html?productId=${id}`;
+    window.location.href = `./singlepage.html?productId=${id}`;
 }

@@ -25,9 +25,12 @@
     align-items: center;
     padding: 1rem;
 }
+
 svg{
     width: 30px;
 }
+=======
+
 .logo{
     grid-column: 1/ span 1;
     font-size: 1.7rem;
@@ -170,7 +173,7 @@ svg{
 .divider{
     display: block;
     height: 1px;
-    width: 79%;
+    width: 70%;
     background: #48484830; 
     margin: 20px 0;
 }
@@ -194,12 +197,15 @@ svg{
 
 .product-btn-group .add-cart{
     
+
     background-color: var(--bg-color);
     color: black;
+    border: 1px solid var(--accent-color);
     border-radius: 4px;
     cursor: pointer;
 }
-.product-btn-group .add-cart i{
+
+.product-btn-group .buy-now i{
     font-size: 20px;
 }
 

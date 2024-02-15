@@ -1,5 +1,4 @@
 
-
 const sliderMainImage = document.getElementById("product-main-image");
 let title = document.getElementById("title");
 let description = document.getElementById("description");
@@ -7,6 +6,7 @@ let addCart = document.querySelector(".add-cart");
 let price1 = document.getElementById("price");
 let discount = document.getElementById("discount");
 let imageListContainer = document.querySelector(".product-image-slider"); // Updated to use the product-image-slider class
+
 let listCartHTML = document.querySelector('.listCart');
 let iconCart = document.querySelector('.icon-cart');
 let iconCartSpan = document.querySelector('.icon-cart span');
@@ -29,11 +29,11 @@ closeCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
 })
 
+
 function getSearchParams() {
   const searchParams = new URLSearchParams(window.location.search);
-  return searchParams.get('productId'); 
+  return searchParams.get('productId');
 }
-
 function singleItem(productId) {
   fetch(`https://dummyjson.com/products/${productId}`)
     .then(res => res.json())
@@ -43,31 +43,23 @@ function singleItem(productId) {
       price1.innerText = single.price;
       discount.innerText = single.discountPercentage;
       description.innerText = single.description;
-
-      
       imageListContainer.innerHTML = '';
-
-      
       single.images.forEach((imageURL, index) => {
         const imageElement = document.createElement('img');
         imageElement.src = imageURL;
         imageElement.alt = `Image ${index + 1}`;
         imageListContainer.appendChild(imageElement);
-
-  
         imageElement.addEventListener('click', function () {
           sliderMainImage.src = imageElement.src;
           console.log(sliderMainImage.src);
         });
       });
-
       console.log(single);
     })
     .catch(error => {
       console.error('Error fetching data:', error);
     });
 }
-
 const productId = getSearchParams();
 if (productId) {
   singleItem(productId);
@@ -227,3 +219,4 @@ const initApp = () => {
 }
 
 initApp();
+

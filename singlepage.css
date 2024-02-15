@@ -23,9 +23,8 @@
     align-items: center;
     padding: 1rem;
 }
-svg{
-    width: 30px;
-}
+
+
 .logo{
     grid-column: 1/ span 1;
     font-size: 1.7rem;
@@ -35,23 +34,7 @@ svg{
 .signup-btn{
     grid-column: 2/ span 1;
 }
-.login-btn{
-    grid-column: 3/ span 1;
-    
-}
-.login-btn span{
-    position: absolute;
-    background-color: red;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color: #fff;
-    top: 10px;
-    right: 60px;
-}
+
 .btn{
     cursor: pointer;
     padding: .8rem;
@@ -168,7 +151,7 @@ svg{
 .divider{
     display: block;
     height: 1px;
-    width: 70%;
+    width: 79%;
     background: #48484830; 
     margin: 20px 0;
 }
@@ -186,17 +169,6 @@ svg{
     font-size: 16px;
     font-weight: 500;
 }
-.product-btn-group .buy-now{
-    background-color: var(--bg-color);
-    color: black;
-    border: 1px solid var(--accent-color);
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.product-btn-group .buy-now i{
-    font-size: 20px;
-}
 
 
 .product-btn-group .add-cart{
@@ -210,100 +182,27 @@ svg{
     font-size: 20px;
 }
 
-.cartTab{
-    width: 400px;
-    background-color: #353432;
-    color: #eee;
-    position: fixed;
-    top: 0;
-    right: -400px;
-    bottom: 0;
-    display: grid;
-    grid-template-rows: 70px 1fr 70px 70px;
-    transition: .5s;
+
+@media screen and (max-width:1068px){
+    .single-product{
+        width: 1080px;
+        /* height: 400px; */
+        margin-top: 10%;
+        position: relative;
+        margin-left: 5%;
+    }
+
 }
-body.showCart .cartTab{
-    right: 0;
-}
-body.showCart .container{
-    transform: translateX(-250px);
-}
-.cartTab h1{
-    padding: 20px;
-    margin: 0;
-    font-weight: 300;
-}
-.cartTab .btn{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-.cartTab .btn a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-}
-.cartTab button,a{
-    background-color: #E8BC0E;
-    border: none;
-    font-family: Poppins;
-    font-size: 22px;
-    font-weight: 500;
-    cursor: pointer;
-}
-.cartTab .close{
-    background-color: #eee;
-}
-.listCart .item img{
-    width: 100%;
-    
-}
-.listCart .item{
-    display: grid;
-    grid-template-columns: 70px 150px 50px 1fr;
-    gap: 10px;
-    text-align: center;
-    align-items: center;
-}
-.listCart .quantity span{
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-    color: #555;
-    cursor: pointer;
-}
-.listCart .quantity span:nth-child(2){
-    background-color: transparent;
-    color: #eee;
-    cursor: auto;
-}
-.listCart .item:nth-child(even){
-    background-color: #eee1;
-}
-.listCart{
-    overflow: auto;
-}
-.listCart::-webkit-scrollbar{
-    width: 0;
-}
-.Total{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-.Total p{
-    font-size: 25px;
-    padding-left: 2rem;
-    font-weight: 600;
-}
+
 @media screen and (max-width:800px) {
     
     .container{
         padding: 20px;
         height: auto;
+        width: auto;
+    }
+    .navbar{
+        width: auto;
     }
     .row{
         display: block;
@@ -330,9 +229,49 @@ body.showCart .container{
         font-size: 24px;
         line-height: 1.6rem;
     } 
+    .product-price{
+        display: flex;
+        flex-direction: row;
+    }
     .product-btn-group{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: 10px;
+        justify-content: center;
     }
 }
+@media screen and (max-width:450px){
+    
+    .navbar{
+        width: 75vh;
+
+    }
+    .container{
+        display: flex;
+        margin-left: 13%;
+    }
+    .single-product{
+        justify-content: center;
+    }
+    /* .row{
+        justify-content: center;
+        align-items: center;
+    } */
+
+    }
+    .product-image-slider{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    
+    .product-btn-group{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        /* margin-left: 50%; */
+    }

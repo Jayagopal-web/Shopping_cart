@@ -115,12 +115,22 @@ body{
 /* individual product card style */
 .card{
     cursor: pointer;
-    padding: 1rem;
+    padding: 1rem 1rem;
     background-color: var(--white);
     /* max-width: 300px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: center;
 }
+/* .card >*:first-child{
+    margin-bottom: auto;
+}
+.card >*:last-child{
+    margin-top: auto;
+} */
 .card img{
+    margin: 10px 0;
     width: 100%;
     height: auto;
 }
@@ -151,9 +161,9 @@ body{
 
 /* Set navbar grid column 3*/
 .navbar-search{
-    padding: 1rem;
+    padding: 0 1rem;
     display: grid;
-    grid-template-columns: .2fr 1fr 100px;
+    grid-template-columns: 150px 1fr 100px;
     align-items: center;
 }
 .navbar-search{
@@ -191,3 +201,52 @@ body{
 }
 /* --------listing.html----------- */
 /* ------------END----------- */
+
+
+
+/* media query */
+/* --------index.html(START)----------- */
+
+/* reduced welcome Text size and increase search bar width */
+@media (max-width:760px) {
+    .welcome-text{
+        font-size: 3rem;
+    }
+    .search-bar input {
+        width: 60%;
+    }
+}
+/* Again: reduced welcome Text size and increase search bar width */
+@media (max-width:630px) {
+    .welcome-text{
+        font-size: 2.5rem;
+    }
+    .search-bar input {
+        width: 70%;
+    }
+}
+/* change Category container 4 columns to 3 columns & reduced Welcome Text size */
+@media (max-width:500px) {
+    .categories-container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .welcome-text{
+        font-size: 1.9rem;
+    }
+}
+
+/* Again: increase search bar width */
+@media (max-width:450px) {
+    .search-bar input {
+        width: 85%;
+    }
+}
+/* --------index.html(END)----------- */
+
+/* --------listing.html(START)----------- */
+@media (max-width:900px) {
+    .listing-container{
+        grid-template-columns: repeat(2, 1fr);
+    }    
+}
+/* --------listing.html(END)----------- */

@@ -85,6 +85,9 @@ function searchCategory(category){
         // create img tag and set src to append to the parent div
         const img = document.createElement('img');
         img.src = `${element.thumbnail}`;
+        img.style.width = '100%';
+        img.style.height = '300px';
+        img.style.objectFit = 'cover';
         cardDiv.append(img);
 
         // Create a div tag and set the inner text 'Product Name' to append to the parent div.
@@ -93,7 +96,7 @@ function searchCategory(category){
         cardDiv.appendChild(productName);
 
         // create a h5 tag and set the inner text 'Price' to append to the parent div
-        const price = document.createElement('h5');
+        const price = document.createElement('h3');
         price.innerText = `$${element.price}`;
         cardDiv.appendChild(price);
 

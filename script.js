@@ -17,7 +17,9 @@ const signUp = e => {
         );
     /* If no duplicate email is found, add the new user to the form data */
     if(!exist){
-        formData.push({ fname, lname, email, pwd });
+        formData.push({ fname, lname, email, pwd,
+            login:'inactive',cart:[]
+        });
         localStorage.setItem('formData', JSON.stringify(formData));
         document.querySelector('form').reset();
         document.getElementById('fname').focus();
@@ -39,14 +41,32 @@ function signIn(e) {
     /* Check if there is a user with matching email and password */
     let exist = formData.length && 
     JSON.parse(localStorage.getItem('formData')).some(data => data.email.toLowerCase() == email && data.pwd.toLowerCase() == pwd);
+
+    let userIndex = formData.findIndex(data => data.email.toLowerCase() == email && data.pwd.toLowerCase() == pwd);
+
+    if (userIndex !== -1) {
+        formData[userIndex].login = 'active';
+        console.log(formData);
+        localStorage.setItem('formData', JSON.stringify(formData));
+
+        
+        // session
+        sessionStorage.setItem("ID", userIndex);
+        sessionStorage.setItem("firstName", formData[userIndex].fname);
+        sessionStorage.setItem("lastName", formData[userIndex].lname);
+        sessionStorage.setItem("login", formData[userIndex].login);
+    }
+
     /* If no matching user is found, show an error message */
     if(!exist){
         alert("Incorrect login credentials");
     }
     /* If a matching user is found, redirect to the home page */
     else{
-        location.href = "./index.html";
+        location.href = "./index.html";        
     }
     /* Prevent the default form submission behavior */
     e.preventDefault();
 }
+
+

@@ -5,41 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Stylesheet CSS -->
     <link rel="stylesheet" href="./style.css">
-    <title>Shopping</title>
+    <title>Eshop Spot</title>
 </head>
 <body>
+    <!-- Gird Main Container --><!-- 3 Grid Row -->
     <div class="grid-main-container">
         
+        <!-- Grid FIRST row START here -->
         <div class="navbar">
             <div class="logo">
-                <Span>Eshop Spot</Span>
+                <span>Eshop Spot</span>
             </div>
-            <!-- <div class="signup-btn">
-                <button type="button" class="btn">Logout</button>
-            </div> -->
+            <div class="user-profile-img profile" id="user-profile">
+                <span id="profileImg">JK</span>
+            </div>
             <div class="login-btn">
                 <button type="button" class="btn" id="login">Login</button>
             </div>
         </div>
+        <!-- Grid FIRST row END here -->
 
+        <!-- Grid SECOND row START here -->
         <div class="welcome-text">
             <div>Welcome to E-shop Spot.</div>
             <div class="search-bar">
                 <input type="text" placeholder="Ex. Smartphones" autocomplete="off">
             </div>
         </div>
+        <!-- Grid SECOND row END here -->
 
+        <!-- Grid THIRD row START here -->
         <div class="categories-container" id="categories-container">
-            <!-- <div class="category-card card">
-                <img src="./jayagopal_profile.png" alt="product" width="250px" height="250px">
-                <div class="product-name">Iphone</div>
-                <div class="price-tag"><span>From $</span><span id="price">499</span></div>
-            </div> -->
+            <!-- Generate product categories from JavaScript -->
         </div>
-
+        <!-- Grid THIRD row END here -->
         
     </div>
+    <!-- Gird Main Container(Closed) -->
 
+    <!-- Js Script -->
     <script src="listing.js" defer></script>
 </body>
 </html>

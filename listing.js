@@ -1,5 +1,28 @@
-// Home page 
+// ---------------- Home Page(index.html)----------------
 
+// session storage
+const fname = sessionStorage.getItem("firstName");
+const lname = sessionStorage.getItem("lastName");
+const login = sessionStorage.getItem("login");
+
+
+// console.log(firstLetterFname, firstLetterLname);
+// console.log(fname,lname,login);
+
+const loginBtn = document.getElementById("login");
+const userProfile = document.getElementById("user-profile");
+const profileImg = document.getElementById("profileImg");
+
+if(login=='active'){
+    const firstLetterFname = fname.charAt(0).toUpperCase();
+    const firstLetterLname = lname.charAt(0).toUpperCase();
+    profileImg.innerText = `${firstLetterFname}${firstLetterLname}`;
+    userProfile.style.display = "block";
+    loginBtn.innerText = 'Logout';
+}else{
+    // userProfile.style.display = "none";
+    loginBtn.innerText = 'Login';
+}
 
 // Login Button
 document.getElementById('login').addEventListener('click', ()=>{
@@ -14,54 +37,67 @@ const all=document.getElementById("All");
 const def=document.getElementById("Default");
 
 
-// const listingContainer = document.getElementById("listing");
-// listingContainer.classList.add('hide');
-
+// get categories container to display products
 const categoriesContainer = document.getElementById("categories-container");
 
+// fetch product categories, it return array of categories
 fetch('https://dummyjson.com/products/categories')
 .then((res) => res.json())
 .then((categories) => {
     categories.forEach(element => {
+        // create parent div
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
         
+        // fetch each category of first product.
         fetch(`https://dummyjson.com/products/category/${element}?limit=1`)
         .then(res => res.json())
         .then((data) => {
-            // console.log(data.products[0].thumbnail);
+
+            // create img tag and set src to append to parent div
             const img = document.createElement('img');
             img.src = `${data.products[0].thumbnail}`;
             cardDiv.append(img);
 
+            // create div tag and set inner Text 'price' to append to parent div
             const price = document.createElement('div');
             price.innerText = `From $${data.products[0].price}`
             price.style.fontWeight = '500';
             cardDiv.append(price);
         });
 
-        const cagetoryDiv = document.createElement('div');
-        cagetoryDiv.innerText = `${element}`;
-        cardDiv.append(cagetoryDiv);
+        // create div tag and set inner Text 'Category' to append to parent div
+        const categoryDiv = document.createElement('div');
+        categoryDiv.innerText = `${element}`;
+        cardDiv.append(categoryDiv);
 
+        // last append the parent div to Categories container
         categoriesContainer.appendChild(cardDiv);
 
+        // When the user clicks the product card, it return what product category they clicked. 
         cardDiv.addEventListener('click', () => sendValue(element));
     });
 });
 
-// Save user selected product category in this variable
-let productCategory = window.location.search.substring(1);
+
+// ---------------- Listing Page(listing.html)----------------
+
+// Save user selected product category in this variable form URL
+const searchParams = new URLSearchParams(window.location.search);
+let productCategory =  searchParams.get('productCategory'); // Assuming 'productCategory' is the parameter name in the URL
+console.log(productCategory);
 searchCategory(productCategory);
 
 function sendValue(category){
     productCategory = category;         //assign user selected category in productCategory
 
-    window.location.href = `./listing.html?${productCategory}`;
-
+    window.location.href = `./listing.html?productCategory=${productCategory}`;
+    
     // searchCategory(productCategory);
 }
 
+
+// get product container form listing.html to display products
 const productContainer = document.getElementById('listing-container');
 
 function searchCategory(category) {
@@ -81,6 +117,7 @@ function searchCategory(category) {
                 products.forEach(element => {
                     const cardDiv = document.createElement('div');
                     cardDiv.classList.add('card');
+                    cardDiv.classList.add('products_card');
                     const img = document.createElement('img');
                     img.src = `${element.thumbnail}`;
                     cardDiv.append(img);
@@ -121,30 +158,37 @@ function searchCategory(category) {
     }
     //this if else is used to stipulate data based on the categories.
     else if(category !== "All"){
+        categorydropdown();
     fetch(`https://dummyjson.com/products/category/${category}`)
     
     .then(res => res.json())
     .then((data) => {
         data.products.forEach(element => {
-        console.log(element);
         
+        // create parent div and add CSS 'card' class.
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
+        cardDiv.classList.add('products_card');
+
+        // create img tag and set src to append to the parent div
         const img = document.createElement('img');
         img.src = `${element.thumbnail}`;
         cardDiv.append(img);
 
+        // Create a div tag and set the inner text 'Product Name' to append to the parent div.
         const productName = document.createElement('div');
         productName.innerText = `${element.title}`;
         cardDiv.appendChild(productName);
 
-        const price = document.createElement('h5');
+        // create a h5 tag and set the inner text 'Price' to append to the parent div
+        const price = document.createElement('h3');
         price.innerText = `$${element.price}`;
         let priId={price:element.price,id:element.id}
         priceArr.push(priId);
         defaultPrice=[...priceArr];
         cardDiv.appendChild(price);
 
+        // Create a span tag and set the inner text 'Discount' to append to the parent div.
         const discount = document.createElement('span');
         discount.innerText = `${element.discountPercentage}% off`;
         discount.style.color = '#388e3c';
@@ -153,12 +197,19 @@ function searchCategory(category) {
 
         productContainer.appendChild(cardDiv);
 
+        // When the user clicks the product card, it return what product ID they clicked. 
         cardDiv.addEventListener('click', () => singleProduct(element.id));
         });
     });
     }
     //else is used to stipulate all the items
     else{
+        const productContainer1 = document.getElementById('listing-container');
+        // productContainer.innerHTML = "";
+        while(productContainer1.firstChild){
+            productContainer1.removeChild(productContainer1.firstChild);
+            console.log("remove");
+        }
         fetch(`https://dummyjson.com/products?limit=100`)
         .then(res => res.json())
         .then((data) => {
@@ -166,6 +217,7 @@ function searchCategory(category) {
         //each items is appended in the div and data is added to html
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
+        cardDiv.classList.add('products_card');
         const img = document.createElement('img');
         img.src = `${element.thumbnail}`;
         cardDiv.append(img);
@@ -188,7 +240,7 @@ function searchCategory(category) {
         discount.style.fontWeight = '500';
         cardDiv.appendChild(discount);
 
-        productContainer.appendChild(cardDiv);
+        productContainer1.appendChild(cardDiv);
 
         cardDiv.addEventListener('click', () => singleProduct(element.id));
         });
@@ -197,8 +249,9 @@ function searchCategory(category) {
     
 }
 
+// Redirect to individual product page
 function singleProduct(id){
-    window.location.href = `./single.html?${id}`;
+    window.location.href = `./singlepage.html?productId=${id}`;
 }
 //guru code 
 //used to list the categories in the filter
@@ -217,7 +270,7 @@ function categorydropdown(){
 function displaydropdown(categories) {
     let opt = categories;
     //Here we are getting the url to get the category and display in the category checkbox 
-    const product = window.location.search.substring(1);
+    const product = window.location.search.substring(17);
     for (let i in opt) {
         let option = document.createElement('option');
         option.value = opt[i];

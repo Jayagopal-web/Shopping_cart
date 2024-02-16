@@ -4,11 +4,19 @@
 const fname = sessionStorage.getItem("firstName");
 const lname = sessionStorage.getItem("lastName");
 const login = sessionStorage.getItem("login");
-console.log(fname,lname,login);
+
+
+// console.log(firstLetterFname, firstLetterLname);
+// console.log(fname,lname,login);
 
 const loginBtn = document.getElementById("login");
 const userProfile = document.getElementById("user-profile");
+const profileImg = document.getElementById("profileImg");
+
 if(login=='active'){
+    const firstLetterFname = fname.charAt(0).toUpperCase();
+    const firstLetterLname = lname.charAt(0).toUpperCase();
+    profileImg.innerText = `${firstLetterFname}${firstLetterLname}`;
     userProfile.style.display = "block";
     loginBtn.innerText = 'Logout';
 }else{

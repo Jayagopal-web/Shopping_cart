@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./singlepage.css">
-</head>
-<body>
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     <div class="navbar">
         <div class="logo">
-            <Span>Eshop Spot</Span>
+            <span>Eshop Spot</span>
         </div>
         <div class="signup-btn">
             <button type="button" class="btn">Log In</button>
@@ -63,7 +63,7 @@
 
                         <div class="product-btn-group">
                             
-                            <div class="button add-cart"><i class='bx bxs-cart'></i> Add to Cart</div>
+                            <div class="button add-cart"><i class="bx bxs-cart"></i> Add to Cart</div>
                         </div>
                     </div>
                 </div>
@@ -79,21 +79,70 @@
         </div>
         <!-- A div to show the total amount  -->
         <div class="Total">
-            <h3 id="tot">TOTAL : $</h3>
+            <h3 id="tot"></h3>
             <!-- after calculating the total price it will be shown here  -->
             <p id="total-price"></p>
         </div>
         <!-- button to close the CART & ckeckout  -->
         <div class="btn1">
             <button class="close">CLOSE</button>
-            <a href="index1.html">Check Out</a>
+            <a href="checkout.html">Check Out</a>
         </div>
     </div>
 
+    <!--Review section  -->
 
-    <!--script-->
-    <script src="./singlepage.js">
+    <div class="rating-box">
+        <h3>Customer reviews</h3>
+         <div class="star" id="star">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <p id="rateno"> </p>
+        </div>
+        <div class="writerev">
+        <h3>Review this product</h3>
+        <p>Share your thoughts with our customers</p>
+        <button type="button" id="openReviewPopup">Write a product review</button>
+    </div>
+</div>
 
-    </script>
+<!-- Review Popup Container -->
+<div id="popupContainer" class="popup-container">
+        <button type="button" id="close"> &times;</button>
+        <h3>Rate this product</h3>
+         <div class="popstar">
+            <div >
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i></div>
+            <p id="poprateno"> </p>
+        </div>
+        
+        <h3>Review this product</h3>
+       <textarea name="description" id="popdescription" placeholder="Description" cols="30" rows="15"></textarea>
+        <button type="submit" id="popsubmitrev">Submit</button>
+    </div>
+       
+ 
+    <!--Customer say..  -->
+    <div class="customer-say">
+        <h4>Customers say</h4>
+        <div class="useridreview" id="customerReviews">
+            
+            <!-- Customer reviews will be dynamically added here -->
+        </div>
+        </div>
+    <!--Review section  -->
+
+
+    
+
+    <script src="./singlepage.js" defer></script>
 </body>
 </html>
+<!-- end -->

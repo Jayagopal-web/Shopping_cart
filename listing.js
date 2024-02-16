@@ -1,5 +1,28 @@
 // ---------------- Home Page(index.html)----------------
 
+// session storage
+const fname = sessionStorage.getItem("firstName");
+const lname = sessionStorage.getItem("lastName");
+const login = sessionStorage.getItem("login");
+
+
+// console.log(firstLetterFname, firstLetterLname);
+// console.log(fname,lname,login);
+
+const loginBtn = document.getElementById("login");
+const userProfile = document.getElementById("user-profile");
+const profileImg = document.getElementById("profileImg");
+
+if(login=='active'){
+    const firstLetterFname = fname.charAt(0).toUpperCase();
+    const firstLetterLname = lname.charAt(0).toUpperCase();
+    profileImg.innerText = `${firstLetterFname}${firstLetterLname}`;
+    userProfile.style.display = "block";
+    loginBtn.innerText = 'Logout';
+}else{
+    // userProfile.style.display = "none";
+    loginBtn.innerText = 'Login';
+}
 
 // Login Button
 document.getElementById('login').addEventListener('click', ()=>{
@@ -81,13 +104,11 @@ function searchCategory(category){
         // create parent div and add CSS 'card' class.
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
+        cardDiv.classList.add('products_card');
 
         // create img tag and set src to append to the parent div
         const img = document.createElement('img');
         img.src = `${element.thumbnail}`;
-        img.style.width = '100%';
-        img.style.height = '300px';
-        img.style.objectFit = 'cover';
         cardDiv.append(img);
 
         // Create a div tag and set the inner text 'Product Name' to append to the parent div.

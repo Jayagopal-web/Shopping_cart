@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="checkoutstyle.css">
+
+</head>
+<body>
+
+<div class="container">
+
+    <form action="" id="form">
+
+        <div class="row">
+
+            <div class="col">
+
+                <h3 class="title">billing address</h3>
+
+                <div class="inputBox">
+                    <span>full name :</span>
+                    <input type="text" id="username" placeholder="BOBBY">
+                    <div class="error"></div>
+                </div>
+                <div class="inputBox">
+                    <span>email :</span>
+                    <input type="text" id="email" placeholder="example@example.com">
+                    <div class="error"></div>
+                </div>
+                <div class="inputBox">
+                    <span>address :</span>
+                    <input type="text" id="address" placeholder="room - street - locality-city">
+                    <div class="error"></div>
+                </div>
+                <div class="inputBox">
+                    <span>Mobile :</span>
+                    <input type="number" id="Mobile" placeholder="0000000000">
+                    <div class="error"></div>
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>state :</span>
+                        <input type="text" id="state" placeholder="Tamil Nadu">
+                        <div class="error"></div>
+                    </div>
+                    <div class="inputBox">
+                        <span>zip code :</span>
+                        <input type="text" id="zip" placeholder="123 456">
+                        <div class="error"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <h3 class="title">payment</h3>
+
+                <div class="inputBox">
+                    <span>cards accepted :</span>
+                    <img src="card_img.png" alt="">
+                </div>
+                <div class="inputBox">
+                    <span>name on card :</span>
+                    <input type="text" id="nameoncard" placeholder="mr. Bobby">
+                    <div class="error"></div>
+                </div>
+                <div class="inputBox">
+                    <span>credit card number :</span>
+                    <input type="number" id="credit"  placeholder="1111-2222-3333-4444">
+                    <div class="error"></div>
+                </div>
+                <div class="inputBox">
+                    <span>exp month :</span>
+                    <input type="text" id="expmonth" placeholder="january">
+                    <div class="error"></div>
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>exp year :</span>
+                        <input type="number" id="expyear" placeholder="2022">
+                        <div class="error"></div>
+                    </div>
+                    <div class="inputBox">
+                        <span>CVV :</span>
+                        <input type="text" id="CVV" placeholder="1234">
+                        <div class="error"></div>
+                    </div>
+                </div>
+
+            </div>
+    
+        </div>
+        
+        <p >TOTAL AMOUNT IS  :: $ <span id="total"></span></p>
+
+        <input type="submit" value="proceed to checkout" class="submit-btn">
+
+    </form>
+
+</div>    
+    <script>
+        const username = document.querySelector('#username');
+        const email = document.querySelector('#email');
+        const address = document.querySelector('#address');
+        const Mobile = document.querySelector('#Mobile');
+        const state = document.querySelector('#state');
+        const nameoncard = document.querySelector('#nameoncard');
+        const expmonth = document.querySelector('#expmonth');
+        const expyear = document.querySelector('#expyear');
+        const credit = document.querySelector('#credit');
+        const CVV = document.querySelector('#CVV');
+        const zip = document.querySelector('#zip');
+        let success= true
+
+        let total=document.getElementById("total");
+
+        form.addEventListener('submit',(e)=>{
+    
+        if(!validateInput()){
+        e.preventDefault();
+        }else{
+            console.log("hii")
+            alert("YOUR ORDER IS SUCCESSFULLY PLACED")
+        }
+
+
+})
+
+       
+ function validateInput(){
+    const form = document.querySelector('#form');
+    const usernameVal = username.value.trim();
+    const emailVal = email.value.trim();
+    const addressVal = address.value.trim();
+    const MobileVal = Mobile.value.trim();
+    const stateVal = state.value.trim();
+    const nameoncardVal = nameoncard.value.trim();
+    const expmonthVal = expmonth.value.trim();
+    const expyearVal = expyear.value.trim();
+    const creditVal = credit.value.trim();
+    const CVVVal = CVV.value.trim();
+    const zipVal = zip.value.trim();
+
+    
+
+
+    // validating username 
+    if(usernameVal===''){
+        success= false;
+        setError(username, 'username is required')
+    }else{
+        setSuccess(username)
+    }
+
+
+    // validating email
+    if(emailVal===''){
+        success= false;
+        setError(email, 'email is required')
+    }else if(!emailValidation(emailVal)){
+        success= false;
+        setError(email, 'enter a valid email')
+
+    }else{
+        setSuccess(email)
+    }
+
+    // validating adddress
+    if(addressVal===''){
+        success= false;
+        setError(address, 'address is required')
+    }else{
+        setSuccess(address)
+    }
+
+    // validating Mobile
+    if(MobileVal===''){
+        success= false;
+        setError(Mobile, 'Mobile number is required')
+    }else if(MobileVal.length!=10){
+        success= false;
+        setError(Mobile, 'Mobile  number is not proper')
+        
+    }else{
+        setSuccess(Mobile)
+
+    }
+    // validating state 
+    if(stateVal===''){
+        success= false;
+        setError(state, 'state is required')
+    }else{
+        setSuccess(state)
+    }
+
+    
+    // validating Zip-code
+    if(zipVal===''){
+        success= false;
+        setError(zip, 'Zip-code is required')
+    }else if(zipVal.length!=6){
+        success= false;
+        setError(zip, 'Zip-code  number is not proper')
+        
+    }else{
+        setSuccess(zip)
+
+    }
+     // validating nameoncard 
+     if(nameoncardVal===''){
+        success= false;
+        setError(nameoncard, 'nameoncard is required')
+    }else{
+        setSuccess(nameoncard)
+    }
+
+     // validating expmonth 
+     if(expmonthVal===''){
+        success= false;
+        setError(expmonth, 'expmonth is required')
+    }else{
+        setSuccess(expmonth)
+    }
+
+     // validating expyear 
+     if(expyearVal===''){
+        success= false;
+        setError(expyear, 'expyear is required')
+    }else{
+        setSuccess(expyear)
+    }
+
+     // validating credit 
+     if(creditVal===''){
+        success= false;
+        setError(credit, 'credit is required')
+    }else{
+        setSuccess(credit)
+    }
+
+     // validating CVV 
+     if(CVVVal===''){
+        success= false;
+        setError(CVV, 'CVV is required')
+    }else{
+        setSuccess(CVV)
+    }
+    
+
+    return success;
+
+}
+
+
+// creating function for error
+function setError(element, message){
+    const inputGroup = element.parentElement;
+    const errorElement = inputGroup.querySelector('.error');
+
+    errorElement.innerText = message;
+    inputGroup.classList.add('error');
+    inputGroup.classList.remove('success');
+
+
+
+
+}
+
+
+// creating function for success
+function setSuccess(element){
+    const inputGroup = element.parentElement;
+    const errorElement = inputGroup.querySelector('.error');
+
+    errorElement.innerText = '';
+    inputGroup.classList.add('success');
+    inputGroup.classList.remove('error');
+
+}
+
+// email validation function
+ 
+function emailValidation(email) {
+    return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+ if(localStorage.getItem('Total')){
+
+cart = JSON.parse(localStorage.getItem('Total'));
+total.innerText= cart
+console.log(cart)
+
+}
+
+
+    </script>
+</body>
+</html>

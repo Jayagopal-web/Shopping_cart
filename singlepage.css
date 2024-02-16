@@ -24,7 +24,10 @@
     padding: 1rem;
 }
 
-svg{
+.icon-cart svg{
+
+/* svg of cart icon  */
+
     width: 30px;
 }
 
@@ -42,6 +45,7 @@ svg{
     grid-column: 3/ span 1;
     
 }
+/* to display the number of cart items as per quantity  */
 .icon-cart span{
     position: absolute;
     background-color: red;
@@ -207,6 +211,20 @@ svg{
     font-size: 20px;
 }
 
+
+
+
+.product-btn-group .add-cart{
+    
+    background-color: var(--bg-color);
+    color: black;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.product-btn-group .add-cart i{
+    font-size: 20px;
+}
+/* cart -tab css */
 .cartTab{
     width: 400px;
     background-color: #353432;
@@ -219,21 +237,24 @@ svg{
     grid-template-rows: 70px 1fr 70px 70px;
     transition: .5s;
 }
+/* css to show the cart-tab */
 body.showCart .cartTab{
     right: 0;
 }
 body.showCart .container{
-    transform: translateX(-250px);
+    transform: translateX(-75px);
 }
+/* cart heading  */
 .cartTab h1{
     padding: 20px;
     margin: 0;
     font-weight: 700;
     font-family: Roboto;
     color: #3b82f6;
-    background-color: #eee;
+    background-color: goldenrod;
     text-align: center;
 }
+/* card buttons  */
 .cartTab .btn1{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -299,6 +320,7 @@ body.showCart .container{
     font-size: 25px;
     padding-left: 2rem;
     font-weight: 600;
+    
 }
 
 
@@ -478,20 +500,26 @@ body.showCart .container{
 
 #username{
     font-weight: 500;
-    text-transform: uppercase;
+    text-transform: uppercase;}
+#tot{
+    font-size: 30px;
+    padding-left: 2rem;
+    font-weight: 600;
+}
+/* cart function media querry */
+@media only screen and (max-width: 992px) {
+    .listProduct{
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 
-
-
-
-
-
-
-
-
-
-
+/* mobile */
+@media only screen and (max-width: 768px) {
+    .listProduct{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
 
 @media screen and (max-width:1068px){
@@ -551,7 +579,7 @@ body.showCart .container{
         justify-content: center;
     }
 }
-@media screen and (max-width:450px){
+@media screen and (max-width:480px){
     
     .navbar{
         width: 75vh;
@@ -564,12 +592,20 @@ body.showCart .container{
     .single-product{
         justify-content: center;
     }
-    /* .row{
-        justify-content: center;
-        align-items: center;
-    } */
+    .icon-cart{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .icon-cart span{
+
+        position: sticky;
+        top:10px;
+        right: 60px; 
 
     }
+
+
     .product-image-slider{
         display: flex;
         flex-direction: row;
@@ -586,3 +622,5 @@ body.showCart .container{
         align-items: center;
         /* margin-left: 50%; */
     }
+   
+}

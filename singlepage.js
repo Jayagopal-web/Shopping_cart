@@ -1,4 +1,5 @@
 
+
 const sliderMainImage = document.getElementById("product-main-image");
 let title = document.getElementById("title");
 let description = document.getElementById("description");
@@ -6,7 +7,6 @@ let addCart = document.querySelector(".add-cart");
 let price1 = document.getElementById("price");
 let discount = document.getElementById("discount");
 let imageListContainer = document.querySelector(".product-image-slider"); // Updated to use the product-image-slider class
-
 let listCartHTML = document.querySelector('.listCart');
 let iconCart = document.querySelector('.icon-cart');
 let iconCartSpan = document.querySelector('.icon-cart span');
@@ -21,6 +21,7 @@ let dataset_id ;
 const total_price = document.getElementById("total-price")
 const tot = document.getElementById("tot")
 const check_final = document.getElementById("check-final")
+const sessionId = sessionStorage.getItem('ID');
 
 iconCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
@@ -29,11 +30,11 @@ closeCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
 })
 
-
 function getSearchParams() {
   const searchParams = new URLSearchParams(window.location.search);
-  return searchParams.get('productId');
+  return searchParams.get('productId'); 
 }
+
 function singleItem(productId) {
   fetch(`https://dummyjson.com/products/${productId}`)
     .then(res => res.json())
@@ -43,23 +44,31 @@ function singleItem(productId) {
       price1.innerText = single.price;
       discount.innerText = single.discountPercentage;
       description.innerText = single.description;
+
+      
       imageListContainer.innerHTML = '';
+
+      
       single.images.forEach((imageURL, index) => {
         const imageElement = document.createElement('img');
         imageElement.src = imageURL;
         imageElement.alt = `Image ${index + 1}`;
         imageListContainer.appendChild(imageElement);
+
+  
         imageElement.addEventListener('click', function () {
           sliderMainImage.src = imageElement.src;
           console.log(sliderMainImage.src);
         });
       });
+
       console.log(single);
     })
     .catch(error => {
       console.error('Error fetching data:', error);
     });
 }
+
 const productId = getSearchParams();
 if (productId) {
   singleItem(productId);
@@ -105,9 +114,18 @@ const addToCart = (productId) => {
     addCartToMemory();
 
 }
+
 const addCartToMemory = () => {
-    localStorage.setItem('cart', JSON.stringify(cart));
+    // Create a copy of the 'cart' array and remove circular references
+    const cartCopy = cart.map(item => ({
+        product_id: item.product_id,
+        quantity: item.quantity
+    }));
+
+    // Store the cart data along with the session ID in local storage
+    localStorage.setItem('acc-cart-' + sessionId, JSON.stringify(cartCopy));
 }
+
 const addCartToHTML = () => {
     listCartHTML.innerHTML = '';
     let totalQuantity = 0;
@@ -144,7 +162,7 @@ const addCartToHTML = () => {
             
         })
         console.log(total);
-        tot.innerText = 'TOTAL :'
+        tot.innerText = 'TOTAL : $'
         total_price.innerText= total;
         console.log(cart.length)
         if(cart.length>=1){
@@ -198,24 +216,24 @@ const changeQuantityCart = (product_id, type) => {
     addCartToHTML();
     addCartToMemory();
 }
+// Function to initialize the app
 const initApp = () => {
-    // get data product
+    // Get data product
     fetch('https://dummyjson.com/products?limit=100')
     .then(response => response.json())
     .then(data => {
         products = data.products;
-        dataset_id=products.id
-        console.log(products.cat)
-        
+        dataset_id = products.id;
+        console.log(products.cat);
 
-        // get data cart from memory
-        if(localStorage.getItem('cart')){
-
-            cart = JSON.parse(localStorage.getItem('cart'));
-            console.log(cart)
+        // Get data cart from local storage based on session ID
+        const cartKey = 'acc-cart-' + sessionId;
+        if (localStorage.getItem(cartKey)) {
+            cart = JSON.parse(localStorage.getItem(cartKey));
+            console.log(cart);
             addCartToHTML();
         }
-    })
+    });
 }
 
 initApp();
@@ -281,7 +299,7 @@ function submitReview() {
 
         alert("Please leave a review.");}
         else{
-    const username = sessionStorage.getItem("username"); // Replace with the actual username (retrieve from user authentication)
+    const username = sessionStorage.getItem("firstName"); // Replace with the actual username (retrieve from user authentication)
     if (username) {
     const review = {
         username: username,

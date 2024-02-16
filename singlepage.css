@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-/* Import google Roboto font */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 :root {
     --bg-color: #3b82f6;
     --white: #ffF;
@@ -324,6 +322,185 @@ body.showCart .container{
     font-weight: 600;
     
 }
+
+
+
+
+
+/* Review section  --> */
+
+.rating-box {
+    /* font-family: "Roboto", sans-serif; */
+    padding:10px;
+    margin-top:-13.5%  ;
+    margin-left:46.5%  ;
+    width:50%;
+   display: flex;
+   flex-direction: column;
+   border-radius: 2px;
+   background-color: rgba(169, 169, 169, 0.137);
+}
+.rating-box h3{
+    font-size: 18px;
+    color:var(--bg-color);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.rating-box .star ,#userstar {
+    display: flex;
+    gap:5px;
+    margin-bottom: 20px;
+    justify-content:flex-start;
+}
+.star i{
+    font-size: 20px;
+    opacity: .2;
+}
+.rating-box p{
+    margin-left: 25px;
+    color:var(--bg-color);
+}
+#star i.active{
+    color: gold;
+    opacity: 1.5;
+}
+#rateno{
+    font-weight:400 ;
+}
+.writerev p{
+    margin-left: 0px;
+    font-size: 15px;
+    font-weight: 450;
+}
+#openReviewPopup{
+    cursor: pointer;
+    margin: 4% 30%;
+    width: 40%;
+    height: 16%;
+    padding: 5px;
+    border-radius: 15px;
+ }
+#openReviewPopup:hover{
+    background-color: rgb(196, 205, 212);
+ }
+
+#username{
+    font-size: 18.5px;
+    font-weight: 500;
+}
+#userreview{
+    margin-top: 7px;
+    font-size: 14px;
+    text-indent: 5px;
+    
+}
+.useridreview{
+
+    margin-top: 7px;
+    height: auto;
+    width: 100%;
+    padding: 15px;
+    background-color: rgb(204, 203, 203);
+    border-radius: 2.5px;
+}
+
+
+/* popup review */
+
+
+
+#popupContainer {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    margin: 2% auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+#popupContainer  h3{
+    font-size: 20px;
+    color:rgb(25, 105, 255);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+#popupContainer  .popstar  {
+    display: flex;
+    gap:5px;
+    margin-bottom: 20px;
+    justify-content:flex-start;
+}
+.popstar i{
+    font-size: 20px;
+    opacity: .2;
+}
+#popupContainer  p{
+    margin-left: 25px;
+    color:rgb(25, 105, 255);
+}
+.popstar .active ,#userstar i{
+    color:  gold;
+    opacity: 1.5;
+}
+#poprateno{
+    font-weight:500 ;
+}
+.popwriterev{
+    display: flex;
+    flex-direction: column;
+}
+/* .popwriterev p{
+    margin-left: 0px;
+    font-size: 15px;
+    font-weight: 450;
+} */
+#popdescription{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+#popsubmitrev{
+    font-weight: 700;
+    margin: 1%;
+    margin-left: 28.5%;
+    width: 40%;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #fb641b;
+    border: none; 
+    color: #fff;
+}
+
+#close{
+    position: absolute;
+    top: .2%;
+    right: .2%;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 2px;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+}
+
+
+#reviews-section {
+    margin-top: 20px;
+}
+
+#product-reviews {
+    display: grid;
+    gap: 10px;
+}
+
+#username{
+    font-weight: 500;
+    text-transform: uppercase;}
 #tot{
     font-size: 30px;
     padding-left: 2rem;
@@ -343,7 +520,6 @@ body.showCart .container{
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
 
 
 @media screen and (max-width:1068px){

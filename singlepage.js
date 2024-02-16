@@ -237,3 +237,189 @@ const initApp = () => {
 }
 
 initApp();
+
+
+// ------------------------------------------------------poovarasan review local storage to store and retrive_________------------------------------------------------------------------
+
+const star= document.querySelectorAll('.star i');
+const rateno = document.getElementById('rateno');
+
+  fetch(`https://dummyjson.com/products/${productId}`)
+    .then(res => { return res.json()})
+    .then(data => {
+      rateno.innerText = `${data.rating} out of 5 `;
+      star.forEach((rate, index1) => {            
+        if (index1 <= (data.rating - 1)) {
+          rate.classList.add("active");
+        } else {
+          rate.classList.remove("active");
+        }
+      });
+    });
+
+// Poovarasan review
+
+// Function to display product reviews
+function displayProductReviews(productId) {
+    const reviewsSection = document.getElementById("customerReviews");
+    reviewsSection.innerHTML = ""; // Clear existing reviews
+
+    // Retrieve reviews for this product from local storage
+    const productReviews = JSON.parse(localStorage.getItem(`productReviews_${productId}`)) || [];
+
+    // Display each customer review
+    productReviews.forEach(review => {
+        const reviewDiv = document.createElement("div");
+        reviewDiv.innerHTML = `
+            <div id="username">${review.username}</div>
+            <div class="star" id="userstar">
+                ${generateStarIcons(review.rating)}
+                <p>${review.rating} rating</p>
+            </div>
+            <p>${review.description}</p>`;
+        reviewsSection.appendChild(reviewDiv);
+    });
+}
+
+// Function to submit a review
+function submitReview() {
+
+    const productId = getSearchParams(); // Get the current product ID
+    const popstar = document.querySelectorAll('.popstar i');
+    const popdescription = document.getElementById('popdescription');
+    let rating = 0;
+    
+    // Calculate the rating based on the selected stars
+    popstar.forEach((rate, index) => {
+        if (rate.classList.contains("active")) {
+            rating = index + 1;
+        }
+    });
+    if(!rating || !popdescription.value){
+
+        alert("Please leave a review.");}
+        else{
+    const username = sessionStorage.getItem("firstName"); // Replace with the actual username (retrieve from user authentication)
+    if (username) {
+    const review = {
+        username: username,
+        rating: rating,
+        description: popdescription.value
+    };
+    
+    // Retrieve existing reviews from local storage
+    const existingReviews = JSON.parse(localStorage.getItem(`productReviews_${productId}`)) || [];
+
+    // Add the new review to the existing reviews
+    existingReviews.push(review);
+
+    // Save the updated reviews back to local storage
+    localStorage.setItem(`productReviews_${productId}`, JSON.stringify(existingReviews));
+
+    // Display the updated reviews
+    displayProductReviews(productId);
+
+    // Clear the popup content after submission
+    clearPopup();
+    }
+    else {
+    alert("Please log in to leave a review.");
+      }  
+    }
+}
+displayProductReviews(productId);
+// Function to clear the popup content
+function clearPopup() {
+    const popstar = document.querySelectorAll('.popstar i');
+    const popdescription = document.getElementById('popdescription');
+    const poprateno = document.getElementById('poprateno');
+
+    // Remove the "active" class from all stars
+    popstar.forEach(rate => {
+        rate.classList.remove("active");
+    });
+
+    // Clear the description input
+    popdescription.value = '';
+
+    // Clear the rating display
+    poprateno.innerHTML = '';
+}
+
+// Function to generate star icons based on the rating
+function generateStarIcons(rating) {
+    let stars = "";
+    for (let i = 0; i < rating; i++) {
+        stars += '<i class="fa-solid fa-star"></i>';
+    }
+    return stars;
+}
+
+// Display popup
+document.getElementById('openReviewPopup').addEventListener("click", () => {
+    const productId = getSearchParams(); // Get the current product ID
+    document.getElementById('popupContainer').style.display = 'block';
+
+    // Display existing reviews when the popup is opened
+   
+});
+
+// Close popup
+document.getElementById('close').addEventListener("click", () => {
+    document.getElementById('popupContainer').style.display = 'none';
+
+    // Clear the popup content when closing
+    clearPopup();
+});
+
+// Handle review submission
+document.getElementById('popsubmitrev').addEventListener("click", () => {
+    // Submit the review and close the popup
+    submitReview();
+    document.getElementById('popupContainer').style.display = 'none';
+});
+
+
+
+// copy code upon
+const popstar = document.querySelectorAll('.popstar i');
+    const poprateno = document.getElementById('poprateno');
+
+    popstar.forEach((rate, index) => {
+        rate.addEventListener('click', () => {
+            // Remove "active" class from all stars
+            popstar.forEach((star, i) => {
+                star.classList.remove("active");
+            });
+
+            // Add "active" class to clicked star and stars before it
+            for (let i = 0; i <= index; i++) {
+                popstar[i].classList.add("active");
+            }
+
+            // Update the rating description based on the selected stars
+            switch (index + 1) {
+                case 1:
+                    poprateno.innerHTML = `Very Bad`;
+                    poprateno.style.color = "#ff0000";
+                    break;
+                case 2:
+                    poprateno.innerHTML = `Bad`;
+                    poprateno.style.color = "#ff8c00";
+                    break;
+                case 3:
+                    poprateno.innerHTML = `Good`;
+                    poprateno.style.color = "#008000";
+                    break;
+                case 4:
+                    poprateno.innerHTML = `Very Good`;
+                    poprateno.style.color = "#008000";
+                    break;
+                case 5:
+                    poprateno.innerHTML = `Excellent !`;
+                    poprateno.style.color = "#006400";
+                    break;
+            }
+        });
+    });
+

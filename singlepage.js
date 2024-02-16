@@ -121,9 +121,13 @@ const addCartToMemory = () => {
         product_id: item.product_id,
         quantity: item.quantity
     }));
-
-    // Store the cart data along with the session ID in local storage
+    if(!sessionId==null){
+         // Store the cart data along with the session ID in local storage
     localStorage.setItem('acc-cart-' + sessionId, JSON.stringify(cartCopy));
+
+    }
+
+   
 }
 
 const addCartToHTML = () => {
@@ -165,15 +169,24 @@ const addCartToHTML = () => {
         tot.innerText = 'TOTAL : $'
         total_price.innerText= total;
         console.log(cart.length)
-        if(cart.length>=1){
-            fin=total;
+        if(!sessionId==null){
+            if(cart.length>=1){
+                fin=total;
+            }
+            localStorage.setItem('Total', JSON.stringify(fin));
+    
+          
+               
         }
-        localStorage.setItem('Total', JSON.stringify(fin));
+            
+    
+        }
+       
+    if(!sessionId==null){
+        iconCartSpan.innerText = totalQuantity;
 
-      
-           
     }
-    iconCartSpan.innerText = totalQuantity;
+    
 }
 listCartHTML.addEventListener('click', (event) => {
     let positionClick = event.target;

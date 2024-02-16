@@ -23,12 +23,47 @@ const tot = document.getElementById("tot")
 const check_final = document.getElementById("check-final")
 const sessionId = sessionStorage.getItem('ID');
 
+
+const fname = sessionStorage.getItem("firstName");
+const lname = sessionStorage.getItem("lastName");
+const login = sessionStorage.getItem("login");
+const loginBtn = document.getElementById("login");
+const userProfile = document.getElementById("user-profile");
+const profileImg = document.getElementById("profileImg");
+
+if(sessionStorage.getItem("login")=='active'){
+    const firstLetterFname = fname.charAt(0).toUpperCase();
+    const firstLetterLname = lname.charAt(0).toUpperCase();
+    profileImg.innerText = `${firstLetterFname}${firstLetterLname}`;
+    userProfile.style.display = "block";
+    loginBtn.innerText = 'Logout';
+}else{
+    // userProfile.style.display = "none";
+    loginBtn.innerText = 'Login';
+}
+
+// Login Button
+document.getElementById('login').addEventListener('click', ()=>{
+    sessionStorage.clear();
+    if(login=='active'){
+        let formData = JSON.parse(localStorage.getItem('formData'))
+        console.log(formData);
+        formData[sessionId].login = 'inactive'
+
+        localStorage.setItem('formData', JSON.stringify(formData));
+    }
+    window.location.href = "./logIn.html";
+}); 
+
+
 iconCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
 })
 closeCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
 })
+
+
 
 function getSearchParams() {
   const searchParams = new URLSearchParams(window.location.search);
@@ -78,9 +113,14 @@ if (productId) {
 
 //cart js
 addCart.addEventListener('click', () => {
-    
-            addToCart(productId);
+
+    if(login=='active'){
+        addToCart(productId);
             addCartToHTML();
+
+    }else{
+        alert("Please login to AddCart")
+    }
             
         
     })

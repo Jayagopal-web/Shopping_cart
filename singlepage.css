@@ -18,10 +18,23 @@
 }
 .navbar{
     display: grid;
-    grid-template-columns: 1fr 100px 100px;
+    grid-template-columns: 1fr 50px 50px 100px;
     gap: 10px;
     align-items: center;
     padding: 1rem;
+}
+
+.user-profile, .profile{
+    margin-left: auto;
+    display: none;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    text-align: center;
+    padding: 10px;
+    font-weight: 800;
 }
 
 .icon-cart svg{
@@ -38,12 +51,20 @@
     font-weight: 700;
     letter-spacing: .6px;
 }
-.signup-btn{
-    grid-column: 2/ span 1;
+.user-profile{
+    grid-column: 2/span 1;
+}
+
+.login-btn{
+    grid-column: 4/ span 1;
 }
 .icon-cart{
     grid-column: 3/ span 1;
-    
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /* to display the number of cart items as per quantity  */
 .icon-cart span{
@@ -56,8 +77,9 @@
     align-items: center;
     border-radius: 50%;
     color: #fff;
-    top: 10px;
-    right: 60px;
+    right: 0;
+    top: -15px;
+    
 }
 .btn{
     cursor: pointer;
@@ -338,7 +360,7 @@ body.showCart .container{
    display: flex;
    flex-direction: column;
    border-radius: 2px;
-   background-color: rgba(169, 169, 169, 0.137);
+   background-color: #E5E7EB;
 }
 .rating-box h3{
     font-size: 18px;
@@ -501,40 +523,29 @@ body.showCart .container{
 #username{
     font-weight: 500;
     text-transform: uppercase;}
+.customer-say{
+    padding: 1%;
+    margin:  1%;
+    width: 100%;
+    margin-left: 10px;
+    border-radius: 5px;
+}    
 #tot{
     font-size: 30px;
     padding-left: 2rem;
     font-weight: 600;
 }
-/* cart function media querry */
-@media only screen and (max-width: 992px) {
-    .listProduct{
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
+@media only screen and (max-width: 1200px){
+    .rating-box{
+        width: 40%;
+        margin-top:-17%  ;
+        margin-left: 50%;
 
-
-/* mobile */
-@media only screen and (max-width: 768px) {
-    .listProduct{
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-
-@media screen and (max-width:1068px){
-    .single-product{
-        width: 1080px;
-        /* height: 400px; */
-        margin-top: 10%;
-        position: relative;
-        margin-left: 5%;
+      
     }
 
 }
-
-@media screen and (max-width:800px) {
-    
+@media only screen and (max-width: 930px){
     .container{
         padding: 20px;
         height: auto;
@@ -549,7 +560,9 @@ body.showCart .container{
 
     .col-6{
         width: 100%;
-        display: block;
+        margin-top: -10%;
+        margin-bottom: 20%;
+        /* display: block; */
     }
     .single-product{
         width: 100%;
@@ -578,8 +591,42 @@ body.showCart .container{
         gap: 10px;
         justify-content: center;
     }
+    .rating-box{
+        margin-left: 18%;
+        width: 60%;
+    }
+
 }
-@media screen and (max-width:480px){
+/* cart function media querry */
+@media only screen and (max-width: 992px) {
+    .listProduct{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+/* mobile */
+@media only screen and (max-width: 768px) {
+    .listProduct{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media screen and (max-width:1068px){
+    .single-product{
+        width: 1080px;
+        /* height: 400px; */
+        margin-top: 10%;
+        position: relative;
+        margin-left: 5%;
+    }
+
+}
+
+
+@media screen and (max-width:550px){
     
     .navbar{
         width: 75vh;
@@ -587,7 +634,8 @@ body.showCart .container{
     }
     .container{
         display: flex;
-        margin-left: 13%;
+        justify-content: flex-start;
+
     }
     .single-product{
         justify-content: center;
@@ -595,14 +643,6 @@ body.showCart .container{
     .icon-cart{
         display: grid;
         grid-template-columns: 1fr 1fr;
-    }
-
-    .icon-cart span{
-
-        position: sticky;
-        top:10px;
-        right: 60px; 
-
     }
 
 
@@ -622,5 +662,15 @@ body.showCart .container{
         align-items: center;
         /* margin-left: 50%; */
     }
+    .rating-box{
+        width: 75%;
+    }
    
+}
+
+@media screen and (max-width:320px){
+    .rating-box{
+        width: 100%;
+        
+    }
 }

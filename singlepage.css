@@ -241,7 +241,7 @@ body.showCart .cartTab{
     right: 0;
 }
 body.showCart .container{
-    transform: translateX(-250px);
+    transform: translateX(-75px);
 }
 /* cart heading  */
 .cartTab h1{

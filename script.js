@@ -18,7 +18,7 @@ const signUp = e => {
     /* If no duplicate email is found, add the new user to the form data */
     if(!exist){
         formData.push({ fname, lname, email, pwd,
-            login:'inactive',
+            login:'inactive',cart:[]
         });
         localStorage.setItem('formData', JSON.stringify(formData));
         document.querySelector('form').reset();

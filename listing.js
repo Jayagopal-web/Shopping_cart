@@ -32,7 +32,6 @@ document.getElementById('login').addEventListener('click', ()=>{
 
 //Using this to store the price of the products
 let priceArr=[];
-let defaultPrice;
 const all=document.getElementById("All");
 const def=document.getElementById("Default");
 
@@ -130,7 +129,6 @@ function searchCategory(category) {
                     price.innerText = `$${element.price}`;
                     let priId={price:element.price,id:element.id}
                     priceArr.push(priId);
-                    defaultPrice=[...priceArr];
                     cardDiv.appendChild(price);
 
                     const discount = document.createElement('span');
@@ -185,7 +183,6 @@ function searchCategory(category) {
         price.innerText = `$${element.price}`;
         let priId={price:element.price,id:element.id}
         priceArr.push(priId);
-        defaultPrice=[...priceArr];
         cardDiv.appendChild(price);
 
         // Create a span tag and set the inner text 'Discount' to append to the parent div.
@@ -231,7 +228,6 @@ function searchCategory(category) {
         //here we store the id,price to sorting based on price
         let priId={price:element.price,id:element.id}
         priceArr.push(priId);
-        defaultPrice=[...priceArr];
         cardDiv.appendChild(price);
 
         const discount = document.createElement('span');
@@ -290,6 +286,7 @@ function displaydropdown(categories) {
 
 categorydropdown();
 
+//getValue function is used to sort the values of present items list
 function getValue(selectObject) {
     var value = selectObject.value;  
     if(value == "LowToHigh"){
@@ -298,11 +295,8 @@ function getValue(selectObject) {
     else if(value == "HighToLow"){
         highToLow();
     }
-    else{
-        searchCategory(defaultPrice);
     }
-    }
-  
+  //this is used to sort low to high
   function lowToHigh(){
     priceArr.sort((a,b)=>{
         const a1 = a.price; 
@@ -318,7 +312,7 @@ function getValue(selectObject) {
     })
     searchCategory(priceArr)
   }
-
+  //this is used to sort high to low
   function highToLow(){
     priceArr.sort((a,b)=>{
         const a1 = a.price; 
@@ -344,6 +338,7 @@ let allProd=fetch(`https://dummyjson.com/products?limit=100`)
         Aproduct = data.products;
     });
 
+//this is used to target the search bar 
 const txtSearch = document.querySelector("#txtSearch");
 
 txtSearch.addEventListener('keyup', (e) => {
@@ -362,7 +357,6 @@ txtSearch.addEventListener('keyup', (e) => {
     } else {
         // If search input is empty, display all products
         searchCategory("All");
-        console.log(defaultPrice);
         all.selected = true;
         def.selected = true;
     }

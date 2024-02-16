@@ -239,7 +239,7 @@ body{
 }
 #category select,.price select{
     color: white;
-    background-color: #3b82f6;
+    background-color: #225489de;
     font-size: 18px;
     margin-top: 10px;
     width: 90%;
@@ -345,3 +345,16 @@ body{
     }
 }
 /* --------listing.html(END)----------- */
+.gotop{
+    position: fixed;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #3b82f6;
+    bottom: 40px;
+    right: 50px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    line-height: 45px;
+}

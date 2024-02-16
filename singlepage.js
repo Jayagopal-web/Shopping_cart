@@ -22,6 +22,7 @@ const total_price = document.getElementById("total-price")
 const tot = document.getElementById("tot")
 const check_final = document.getElementById("check-final")
 
+// creating  click functionality to cart icon
 iconCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
 })
@@ -29,10 +30,9 @@ closeCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
 })
 
-
 function getSearchParams() {
   const searchParams = new URLSearchParams(window.location.search);
-  return searchParams.get('productId');
+  return searchParams.get('productId'); 
 }
 function singleItem(productId) {
   fetch(`https://dummyjson.com/products/${productId}`)
@@ -43,12 +43,18 @@ function singleItem(productId) {
       price1.innerText = single.price;
       discount.innerText = single.discountPercentage;
       description.innerText = single.description;
+
+      
       imageListContainer.innerHTML = '';
+
+      
       single.images.forEach((imageURL, index) => {
         const imageElement = document.createElement('img');
         imageElement.src = imageURL;
         imageElement.alt = `Image ${index + 1}`;
         imageListContainer.appendChild(imageElement);
+
+  
         imageElement.addEventListener('click', function () {
           sliderMainImage.src = imageElement.src;
           console.log(sliderMainImage.src);
@@ -67,7 +73,7 @@ if (productId) {
   console.error('Product ID not found in URL.');
 }
 
-//cart js
+//
 addCart.addEventListener('click', () => {
     
             addToCart(productId);
@@ -77,9 +83,10 @@ addCart.addEventListener('click', () => {
     })
 
 
-
+// adding cart in local storage 
 const addToCart = (productId) => {
     let positionThisProductInCart = cart.findIndex((value) => value.product_id == productId);
+    // checking local storage cart length before adding  
     if(cart.length <= 0){
         cart = [{
             product_id: productId,
@@ -87,7 +94,7 @@ const addToCart = (productId) => {
             
             
             
-        }];
+        }]; 
     }else if(positionThisProductInCart < 0){
         cart.push({
             product_id: productId,
@@ -101,15 +108,19 @@ const addToCart = (productId) => {
 
         
     }
-    
+    // calling the function to store value in local storage 
     addCartToMemory();
 
 }
+// creating  the function to store value in local storage 
 const addCartToMemory = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
+// creating a function to show the stored products 
+
 const addCartToHTML = () => {
     listCartHTML.innerHTML = '';
+    // to display the total  quantity in add to cart
     let totalQuantity = 0;
     if(cart.length > 0){
          total = 0;
@@ -145,11 +156,13 @@ const addCartToHTML = () => {
         })
         console.log(total);
         tot.innerText = 'TOTAL :'
+        // calculating the total price
         total_price.innerText= total;
         console.log(cart.length)
         if(cart.length>=1){
             fin=total;
         }
+        // creating a local stoarge of total to store the total price 
         localStorage.setItem('Total', JSON.stringify(fin));
 
       
@@ -157,6 +170,7 @@ const addCartToHTML = () => {
     }
     iconCartSpan.innerText = totalQuantity;
 }
+// function to get increase / decrease event for  the quantity 
 listCartHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if(positionClick.classList.contains('minus') || positionClick.classList.contains('plus')){
@@ -170,6 +184,7 @@ listCartHTML.addEventListener('click', (event) => {
         changeQuantityCart(product_id, type);
     }
 })
+// function to change the quantity 
 const changeQuantityCart = (product_id, type) => {
     let positionItemInCart = cart.findIndex((value) => value.product_id == product_id);
     if(positionItemInCart >= 0){
@@ -195,11 +210,12 @@ const changeQuantityCart = (product_id, type) => {
         }
         
     }
+    // calling the function to display CART area and adding those values to the local storage .
     addCartToHTML();
     addCartToMemory();
 }
 const initApp = () => {
-    // get data product
+    // getting the  product details from api 
     fetch('https://dummyjson.com/products?limit=100')
     .then(response => response.json())
     .then(data => {
@@ -219,4 +235,3 @@ const initApp = () => {
 }
 
 initApp();
-

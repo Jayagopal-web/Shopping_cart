@@ -81,13 +81,11 @@ function searchCategory(category){
         // create parent div and add CSS 'card' class.
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
+        cardDiv.classList.add('products_card');
 
         // create img tag and set src to append to the parent div
         const img = document.createElement('img');
         img.src = `${element.thumbnail}`;
-        img.style.width = '100%';
-        img.style.height = '300px';
-        img.style.objectFit = 'cover';
         cardDiv.append(img);
 
         // Create a div tag and set the inner text 'Product Name' to append to the parent div.

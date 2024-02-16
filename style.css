@@ -174,7 +174,7 @@ body{
 /*  container, set grid column 2. first column for Filter & second column for listing container(Product container)*/
 .listing{
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 1fr 4fr;
     gap: 20px;
 }
 .filters{
@@ -198,6 +198,12 @@ body{
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.products_card img{
+    width: 100%;
+    height: 300px;
+    object-fit:cover;
 }
 /* --------listing.html----------- */
 /* ------------END----------- */
@@ -244,9 +250,41 @@ body{
 /* --------index.html(END)----------- */
 
 /* --------listing.html(START)----------- */
-@media (max-width:900px) {
+
+/* change 3 column into 2 column */
+@media (max-width:1000px) {
     .listing-container{
         grid-template-columns: repeat(2, 1fr);
     }    
+}
+@media (max-width:805px) {
+    .listing {
+        grid-template-columns: 1fr 3fr;
+    }
+}
+@media (max-width: 650px){
+    .listing {
+        grid-template-columns: 155px 1fr;
+    }
+    .listing-container{
+        grid-template-columns: 1fr;
+    }
+    .card{
+        padding: .5rem;
+    }
+    .products_card img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Navbar grid and logo */
+@media (max-width:550px) {
+    .navbar-search{
+        grid-template-columns: 130px 1fr 60px;
+    }
+    .logo{
+        font-size: 1.5rem;
+    }
 }
 /* --------listing.html(END)----------- */

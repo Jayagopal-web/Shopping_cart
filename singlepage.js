@@ -158,7 +158,7 @@ const addCartToMemory = () => {
         product_id: item.product_id,
         quantity: item.quantity
     }));
-    if(!sessionId==null){
+    if(sessionId!=null){
         localStorage.setItem('acc-cart-' + sessionId, JSON.stringify(cartCopy));
     }
 }
@@ -197,7 +197,7 @@ const addCartToHTML = () => {
         })
         tot.innerText = 'TOTAL : $'
         total_price.innerText= total;
-        if(!sessionId==null){
+        if(sessionId!=null){
             if(cart.length>=1){
                 fin=total;
             }
@@ -205,7 +205,7 @@ const addCartToHTML = () => {
         }
     }
        
-    if(!sessionId==null){
+    if(sessionId!=null){
         iconCartSpan.innerText = totalQuantity;
     }
 }
@@ -262,7 +262,11 @@ const initApp = () => {
         const cartKey = 'acc-cart-' + sessionId;
         if (localStorage.getItem(cartKey)) {
             cart = JSON.parse(localStorage.getItem(cartKey));
-            addCartToHTML();
+            if(sessionId!=null){
+                addCartToHTML();
+
+            }
+           
         }
     });
 }

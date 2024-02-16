@@ -262,7 +262,11 @@ const initApp = () => {
         const cartKey = 'acc-cart-' + sessionId;
         if (localStorage.getItem(cartKey)) {
             cart = JSON.parse(localStorage.getItem(cartKey));
-            addCartToHTML();
+            if(sessionId!=null){
+                addCartToHTML();
+
+            }
+           
         }
     });
 }

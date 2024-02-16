@@ -1,5 +1,20 @@
 // ---------------- Home Page(index.html)----------------
 
+// session storage
+const fname = sessionStorage.getItem("firstName");
+const lname = sessionStorage.getItem("lastName");
+const login = sessionStorage.getItem("login");
+console.log(fname,lname,login);
+
+const loginBtn = document.getElementById("login");
+const userProfile = document.getElementById("user-profile");
+if(login=='active'){
+    userProfile.style.display = "block";
+    loginBtn.innerText = 'Logout';
+}else{
+    // userProfile.style.display = "none";
+    loginBtn.innerText = 'Login';
+}
 
 // Login Button
 document.getElementById('login').addEventListener('click', ()=>{

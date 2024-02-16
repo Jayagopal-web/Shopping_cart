@@ -15,11 +15,11 @@
         <div class="navbar-search">
             <div class="logo">
                 <a href="./index.html">
-                    <Span>Eshop Spot</Span>
+                    <span>Eshop Spot</span>
                 </a>
             </div>
             <div class="search-bar">
-                <input type="text" placeholder="Ex. Smartphones" autocomplete="off">
+                <input type="text" placeholder="Ex. Smartphones" id="txtSearch" autocomplete="off">
             </div>
             <div class="user-profile" id="user-profile">
                 <span id="profileImg">JK</span>
@@ -33,9 +33,19 @@
         <!-- Grid SECOND row START here -->
         <div class="listing" id="listing">
             <div class="filters">
-                <div class="category">Category</div>
-                <div class="price">Price</div>
-                <div class="review">Customer review</div>
+                <div class="category" id="category">Category<br>
+                    <select name="categories" id="categories">
+                        <option value="All" id="All">All</option>
+                        
+                    </select> 
+                </div>
+                <div class="price">Price
+                    <select name="Price" id="Price" onchange="getValue(this)">
+                        <option value="Default" id="Default">Default</option>
+                        <option value="LowToHigh">Low To High</option>
+                        <option value="HighToLow">High To Low</option>   
+                    </select>
+                </div>
             </div>
             <div class="listing-container" id="listing-container">
                 <!-- Generate products from JavaScript -->

@@ -30,6 +30,12 @@ document.getElementById('login').addEventListener('click', ()=>{
 }); 
 // login logic need to improve.
 
+//Using this to store the price of the products
+let priceArr=[];
+let defaultPrice;
+const all=document.getElementById("All");
+const def=document.getElementById("Default");
+
 
 // get categories container to display products
 const categoriesContainer = document.getElementById("categories-container");
@@ -94,9 +100,67 @@ function sendValue(category){
 // get product container form listing.html to display products
 const productContainer = document.getElementById('listing-container');
 
-// fetch products based on the user-selected category
-function searchCategory(category){
+function searchCategory(category) {
+    //first we will check the category is array or not bcoz we will stipulate data based on all or category.
+    //this if is used to display individual items iems are sended in array format.
+    if (Array.isArray(category)) {
+        productContainer.innerHTML = "";
+        if(category.length !=0){
+        priceArr=[];
+        let promises = category.map(categoryItem => {
+            return fetch(`https://dummyjson.com/products/${categoryItem.id}`)
+                .then(res => res.json());
+        });
+
+        Promise.all(promises)
+            .then(products => {
+                products.forEach(element => {
+                    const cardDiv = document.createElement('div');
+                    cardDiv.classList.add('card');
+                    cardDiv.classList.add('products_card');
+                    const img = document.createElement('img');
+                    img.src = `${element.thumbnail}`;
+                    cardDiv.append(img);
+
+                    const productName = document.createElement('div');
+                    productName.innerText = `${element.title}`;
+                    cardDiv.appendChild(productName);
+
+                    const price = document.createElement('h5');
+                    price.innerText = `$${element.price}`;
+                    let priId={price:element.price,id:element.id}
+                    priceArr.push(priId);
+                    defaultPrice=[...priceArr];
+                    cardDiv.appendChild(price);
+
+                    const discount = document.createElement('span');
+                    discount.innerText = `${element.discountPercentage}% off`;
+                    discount.style.color = '#388e3c';
+                    discount.style.fontWeight = '500';
+                    cardDiv.appendChild(discount);
+
+                    productContainer.appendChild(cardDiv);
+
+                    cardDiv.addEventListener('click', () => singleProduct(element.id));
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+            });
+        }
+        else{
+            productContainer.innerHTML = "";
+            let notFound=document.createElement("section")
+            notFound.classList.add("notFound")
+            notFound.innerHTML="No Matching Products found";
+            productContainer.appendChild(notFound);
+        }
+    }
+    //this if else is used to stipulate data based on the categories.
+    else if(category !== "All"){
+        categorydropdown();
     fetch(`https://dummyjson.com/products/category/${category}`)
+    
     .then(res => res.json())
     .then((data) => {
         data.products.forEach(element => {
@@ -119,6 +183,9 @@ function searchCategory(category){
         // create a h5 tag and set the inner text 'Price' to append to the parent div
         const price = document.createElement('h3');
         price.innerText = `$${element.price}`;
+        let priId={price:element.price,id:element.id}
+        priceArr.push(priId);
+        defaultPrice=[...priceArr];
         cardDiv.appendChild(price);
 
         // Create a span tag and set the inner text 'Discount' to append to the parent div.
@@ -134,9 +201,169 @@ function searchCategory(category){
         cardDiv.addEventListener('click', () => singleProduct(element.id));
         });
     });
+    }
+    //else is used to stipulate all the items
+    else{
+        const productContainer1 = document.getElementById('listing-container');
+        // productContainer.innerHTML = "";
+        while(productContainer1.firstChild){
+            productContainer1.removeChild(productContainer1.firstChild);
+            console.log("remove");
+        }
+        fetch(`https://dummyjson.com/products?limit=100`)
+        .then(res => res.json())
+        .then((data) => {
+        data.products.forEach(element => {
+        //each items is appended in the div and data is added to html
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('card');
+        cardDiv.classList.add('products_card');
+        const img = document.createElement('img');
+        img.src = `${element.thumbnail}`;
+        cardDiv.append(img);
+
+        const productName = document.createElement('div');
+        productName.innerText = `${element.title}`;
+        cardDiv.appendChild(productName);
+
+        const price = document.createElement('h5');
+        price.innerText = `$${element.price}`;
+        //here we store the id,price to sorting based on price
+        let priId={price:element.price,id:element.id}
+        priceArr.push(priId);
+        defaultPrice=[...priceArr];
+        cardDiv.appendChild(price);
+
+        const discount = document.createElement('span');
+        discount.innerText = `${element.discountPercentage}% off`;
+        discount.style.color = '#388e3c';
+        discount.style.fontWeight = '500';
+        cardDiv.appendChild(discount);
+
+        productContainer1.appendChild(cardDiv);
+
+        cardDiv.addEventListener('click', () => singleProduct(element.id));
+        });
+    });
+    }
+    
 }
 
 // Redirect to individual product page
 function singleProduct(id){
     window.location.href = `./singlepage.html?productId=${id}`;
 }
+//guru code 
+//used to list the categories in the filter
+let select=document.getElementById("categories")
+
+function categorydropdown(){
+    fetch('https://dummyjson.com/products/categories')
+    .then((res) => res.json())
+    .then((categories) => {
+        displaydropdown(categories);
+        
+    })
+}
+
+
+function displaydropdown(categories) {
+    let opt = categories;
+    //Here we are getting the url to get the category and display in the category checkbox 
+    const product = window.location.search.substring(17);
+    for (let i in opt) {
+        let option = document.createElement('option');
+        option.value = opt[i];
+        option.textContent = opt[i];
+
+        if(opt[i]==product){
+            option.selected = true;
+        }
+        select.appendChild(option);
+        // console.log(select);
+    }
+    select.addEventListener('change', () => {
+        sendValue(select.value);
+    });
+
+}
+
+categorydropdown();
+
+function getValue(selectObject) {
+    var value = selectObject.value;  
+    if(value == "LowToHigh"){
+        lowToHigh();
+    }
+    else if(value == "HighToLow"){
+        highToLow();
+    }
+    else{
+        searchCategory(defaultPrice);
+    }
+    }
+  
+  function lowToHigh(){
+    priceArr.sort((a,b)=>{
+        const a1 = a.price; 
+        const b1 = b.price; 
+
+        if (a1 < b1) {
+            return -1;
+        }
+        if (a1 > b1) {
+            return 1;
+        }
+        return 0; 
+    })
+    searchCategory(priceArr)
+  }
+
+  function highToLow(){
+    priceArr.sort((a,b)=>{
+        const a1 = a.price; 
+        const b1 = b.price; 
+        if (a1 < b1) {
+            return 1;
+        }
+        if (a1 > b1) {
+            return -1;
+        }
+        return 0;
+
+    });
+    searchCategory(priceArr);
+  }
+
+
+let Aproduct; 
+
+let allProd=fetch(`https://dummyjson.com/products?limit=100`)
+    .then(res => res.json())
+    .then((data) => {
+        Aproduct = data.products;
+    });
+
+const txtSearch = document.querySelector("#txtSearch");
+
+txtSearch.addEventListener('keyup', (e) => {
+    const value = e.target.value.toLowerCase().trim();
+    if (value) {
+        let searchprod=[];
+        Aproduct.filter((prod) => {
+            return prod.title.toLowerCase().includes(value);
+        }).forEach((prod)=>{
+            let val={price:prod.price,id:prod.id};
+            searchprod.push(val);
+        });
+        searchCategory(searchprod)
+        all.selected = true;
+        def.selected = true;
+    } else {
+        // If search input is empty, display all products
+        searchCategory("All");
+        console.log(defaultPrice);
+        all.selected = true;
+        def.selected = true;
+    }
+});

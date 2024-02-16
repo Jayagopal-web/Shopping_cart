@@ -18,7 +18,7 @@ const signUp = e => {
     /* If no duplicate email is found, add the new user to the form data */
     if(!exist){
         formData.push({ fname, lname, email, pwd,
-            login:'inactive',
+            login:'inactive',cart:[]
         });
         localStorage.setItem('formData', JSON.stringify(formData));
         document.querySelector('form').reset();
@@ -49,8 +49,12 @@ function signIn(e) {
         console.log(formData);
         localStorage.setItem('formData', JSON.stringify(formData));
 
+        
         // session
-        sessionStorage.setItem("username", formData[userIndex].fname);
+        sessionStorage.setItem("ID", userIndex);
+        sessionStorage.setItem("firstName", formData[userIndex].fname);
+        sessionStorage.setItem("lastName", formData[userIndex].lname);
+        sessionStorage.setItem("login", formData[userIndex].login);
     }
 
     /* If no matching user is found, show an error message */

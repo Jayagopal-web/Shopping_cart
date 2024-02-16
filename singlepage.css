@@ -25,11 +25,7 @@
     align-items: center;
     padding: 1rem;
 }
-<<<<<<< HEAD
 /* svg of cart icon  */
-=======
-
->>>>>>> 5068bb1c9c0e66c5487d7b1497cc054185c89f49
 svg{
     width: 30px;
 }
@@ -245,7 +241,7 @@ body.showCart .cartTab{
     right: 0;
 }
 body.showCart .container{
-    transform: translateX(-250px);
+    transform: translateX(-75px);
 }
 /* cart heading  */
 .cartTab h1{

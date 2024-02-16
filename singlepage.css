@@ -322,6 +322,12 @@ body.showCart .container{
     font-size: 25px;
     padding-left: 2rem;
     font-weight: 600;
+    
+}
+#tot{
+    font-size: 30px;
+    padding-left: 2rem;
+    font-weight: 600;
 }
 /* cart function media querry */
 @media only screen and (max-width: 992px) {

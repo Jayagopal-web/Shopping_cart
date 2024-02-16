@@ -162,7 +162,7 @@ const addCartToHTML = () => {
             
         })
         console.log(total);
-        tot.innerText = 'TOTAL :'
+        tot.innerText = 'TOTAL : $'
         total_price.innerText= total;
         console.log(cart.length)
         if(cart.length>=1){

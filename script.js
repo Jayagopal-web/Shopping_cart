@@ -49,8 +49,12 @@ function signIn(e) {
         console.log(formData);
         localStorage.setItem('formData', JSON.stringify(formData));
 
+        
         // session
-        sessionStorage.setItem("username", formData[userIndex].fname);
+        sessionStorage.setItem("ID", userIndex);
+        sessionStorage.setItem("firstName", formData[userIndex].fname);
+        sessionStorage.setItem("lastName", formData[userIndex].lname);
+        sessionStorage.setItem("login", formData[userIndex].login);
     }
 
     /* If no matching user is found, show an error message */

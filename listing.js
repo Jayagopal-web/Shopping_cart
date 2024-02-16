@@ -1,5 +1,20 @@
 // ---------------- Home Page(index.html)----------------
 
+// session storage
+const fname = sessionStorage.getItem("firstName");
+const lname = sessionStorage.getItem("lastName");
+const login = sessionStorage.getItem("login");
+console.log(fname,lname,login);
+
+const loginBtn = document.getElementById("login");
+const userProfile = document.getElementById("user-profile");
+if(login=='active'){
+    userProfile.style.display = "block";
+    loginBtn.innerText = 'Logout';
+}else{
+    // userProfile.style.display = "none";
+    loginBtn.innerText = 'Login';
+}
 
 // Login Button
 document.getElementById('login').addEventListener('click', ()=>{
@@ -81,6 +96,7 @@ function searchCategory(category){
         // create parent div and add CSS 'card' class.
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
+        cardDiv.classList.add('products_card');
 
         // create img tag and set src to append to the parent div
         const img = document.createElement('img');
@@ -93,7 +109,7 @@ function searchCategory(category){
         cardDiv.appendChild(productName);
 
         // create a h5 tag and set the inner text 'Price' to append to the parent div
-        const price = document.createElement('h5');
+        const price = document.createElement('h3');
         price.innerText = `$${element.price}`;
         cardDiv.appendChild(price);
 

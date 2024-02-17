@@ -49,10 +49,15 @@ fetch('https://dummyjson.com/products/categories')
         cardDiv.classList.add('card');
         
         // fetch each category of first product.
-        fetch(`https://dummyjson.com/products/category/${element}?limit=1`)
+        fetch(`https://dummyjson.com/products/category/${element}`)
         .then(res => res.json())
         .then((data) => {
-
+            //here used a array to store the price 
+            let low=[];
+            let d=data.products.forEach((prod)=> {low.push(prod.price)});
+            
+            //and we get the lowest price from the array
+            let lowp=Math.min.apply(null,low)
             // create img tag and set src to append to parent div
             const img = document.createElement('img');
             img.src = `${data.products[0].thumbnail}`;
@@ -60,7 +65,7 @@ fetch('https://dummyjson.com/products/categories')
 
             // create div tag and set inner Text 'price' to append to parent div
             const price = document.createElement('div');
-            price.innerText = `From $${data.products[0].price}`
+            price.innerText = `From $${lowp}`
             price.style.fontWeight = '500';
             cardDiv.append(price);
         });
@@ -104,59 +109,53 @@ function searchCategory(category) {
     //this if is used to display individual items iems are sended in array format.
     if (Array.isArray(category)) {
         productContainer.innerHTML = "";
-        if(category.length !=0){
-        priceArr=[];
-        let promises = category.map(categoryItem => {
-            return fetch(`https://dummyjson.com/products/${categoryItem.id}`)
-                .then(res => res.json());
-        });
-
-        Promise.all(promises)
-            .then(products => {
-                products.forEach(element => {
+        if (category.length > 0) {
+            priceArr = [];
+            category.forEach(categoryItem => {
+                // Find products belonging to the current category
+                const productsInCategory = Aproduct.filter(product => product.id === categoryItem.id);
+                console.log(productsInCategory)
+                console.log(Aproduct)
+                // Iterate over products in the current category
+                productsInCategory.forEach(element => {
                     const cardDiv = document.createElement('div');
                     cardDiv.classList.add('card');
                     cardDiv.classList.add('products_card');
                     const img = document.createElement('img');
                     img.src = `${element.thumbnail}`;
                     cardDiv.append(img);
-
+    
                     const productName = document.createElement('div');
                     productName.innerText = `${element.title}`;
                     cardDiv.appendChild(productName);
-
+    
                     const price = document.createElement('h5');
                     price.innerText = `$${element.price}`;
-                    let priId={price:element.price,id:element.id}
+                    let priId = { price: element.price, id: element.id };
                     priceArr.push(priId);
                     cardDiv.appendChild(price);
-
+    
                     const discount = document.createElement('span');
                     discount.innerText = `${element.discountPercentage}% off`;
                     discount.style.color = '#388e3c';
                     discount.style.fontWeight = '500';
                     cardDiv.appendChild(discount);
-
+    
                     productContainer.appendChild(cardDiv);
-
+    
                     cardDiv.addEventListener('click', () => singleProduct(element.id));
                 });
-            })
-            .catch(error => {
-                console.error('Error fetching products:', error);
             });
-        }
-        else{
+        } else {
             productContainer.innerHTML = "";
-            let notFound=document.createElement("section")
-            notFound.classList.add("notFound")
-            notFound.innerHTML="No Matching Products found";
+            let notFound = document.createElement("section");
+            notFound.classList.add("notFound");
+            notFound.innerHTML = "No Matching Products found";
             productContainer.appendChild(notFound);
         }
     }
     //this if else is used to stipulate data based on the categories.
     else if(category !== "All"){
-        categorydropdown();
     fetch(`https://dummyjson.com/products/category/${category}`)
     
     .then(res => res.json())
@@ -346,7 +345,7 @@ txtSearch.addEventListener('keyup', (e) => {
     if (value) {
         let searchprod=[];
         Aproduct.filter((prod) => {
-            return prod.title.toLowerCase().includes(value);
+            return (prod.title.toLowerCase().includes(value) || prod.category.toLowerCase().includes(value) || prod.brand.toLowerCase().includes(value));
         }).forEach((prod)=>{
             let val={price:prod.price,id:prod.id};
             searchprod.push(val);
@@ -354,6 +353,7 @@ txtSearch.addEventListener('keyup', (e) => {
         searchCategory(searchprod)
         all.selected = true;
         def.selected = true;
+        console.log(Aproduct)
     } else {
         // If search input is empty, display all products
         searchCategory("All");

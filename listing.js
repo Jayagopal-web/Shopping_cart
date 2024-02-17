@@ -1,6 +1,7 @@
 // ---------------- Home Page(index.html)----------------
 
 // session storage
+const userId = sessionStorage.getItem("ID");
 const fname = sessionStorage.getItem("firstName");
 const lname = sessionStorage.getItem("lastName");
 const login = sessionStorage.getItem("login");
@@ -20,12 +21,19 @@ if(login=='active'){
     userProfile.style.display = "block";
     loginBtn.innerText = 'Logout';
 }else{
-    // userProfile.style.display = "none";
     loginBtn.innerText = 'Login';
 }
 
 // Login Button
 document.getElementById('login').addEventListener('click', ()=>{
+    sessionStorage.clear();
+    
+    if(login=='active'){
+        let formData = JSON.parse(localStorage.getItem('formData'))
+        console.log(formData);
+        formData[userId].login = 'inactive'
+        localStorage.setItem('formData', JSON.stringify(formData));
+    }
     window.location.href = "./logIn.html";
 }); 
 // login logic need to improve.

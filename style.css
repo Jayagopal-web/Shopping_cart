@@ -114,10 +114,14 @@ body{
     color: var(--bg-color);
 }
 
-/* Search bar */
-.search-bar {
+/* Tagline style */
+.tagline {
     text-align: center;
     width: 100%;
+    font-size: 1.3rem;
+    font-weight: 400;
+    /* border: 2px solid blue; */
+    /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
 }
 .search-bar input{
     
@@ -164,6 +168,7 @@ body{
 }
 /* --------index.html----------- */
 /* ------------END----------- */
+
 
 /* ------------START----------- */
 /* --------listing.html----------- */

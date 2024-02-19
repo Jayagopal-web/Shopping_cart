@@ -17,7 +17,7 @@ let cart = [];
 let totprice=0;
 let total = 0;
 let fin = 0;
-let cartchk ;
+
 let dataset_id ;
 const checkout =document.getElementById("checkout")
 const total_price = document.getElementById("total-price")

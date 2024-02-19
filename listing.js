@@ -44,12 +44,13 @@ const url = window.location.href;
 const parts = url.split('/');
 const pageName = parts[parts.length - 1];
 const page = pageName.split('.')[0];
+
 //Using this to store the price of the products
 let priceArr=[];
 const all=document.getElementById("All");
 const def=document.getElementById("Default");
 
-
+// This will only render on the index page.
 if(page=='index'){
 // get categories container to display products
 const categoriesContainer = document.getElementById("categories-container");

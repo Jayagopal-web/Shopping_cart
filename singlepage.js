@@ -59,6 +59,10 @@ document.getElementById('login').addEventListener('click', ()=>{
     }
     window.location.href = "./logIn.html";
 }); 
+document.getElementById('back').addEventListener('click', ()=>{
+    window.history.back();
+
+})
 
 
 iconCart.addEventListener('click', () => {

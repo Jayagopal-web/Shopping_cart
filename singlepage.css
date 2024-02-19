@@ -21,13 +21,14 @@
 
     grid-row: 1/span 1;
 }
-.navbar{
+.navbar {
     display: grid;
-    grid-template-columns: 1fr 50px 50px 100px;
+    grid-template-columns: 1fr 50px 60px 50px 100px;
     gap: 10px;
     align-items: center;
     padding: 1rem;
 }
+
 
 /* Style for profile round */
 .user-profile, .profile{
@@ -50,7 +51,9 @@
 
     width: 30px;
 }
-
+.back-btn{
+    grid-column: 3/ span 1;
+}
 
 .logo{
     grid-column: 1/ span 1;
@@ -64,10 +67,10 @@
 
 /* Style for login button */
 .login-btn{
-    grid-column: 4/ span 1;
+    grid-column: 5/ span 1;
 }
 .icon-cart{
-    grid-column: 3/ span 1;
+    grid-column: 4/ span 1;
     position: relative;
 
     display: flex;
@@ -309,7 +312,7 @@ body.showCart .container{
     justify-content: center;
     text-decoration: none;
 }
-.cartTab button, cartTaba{
+.cartTab button, .cartTab a{
     background-color: #E8BC0E;
     border: none;
     font-family: Poppins;
@@ -549,13 +552,9 @@ body.showCart .container{
     font-weight: 600;
 
 }
-
+ 
 /* Style for screen-size 1200px */
-@media only screen and (max-width: 1200px){
 
-
-
-}
 
 /* style for screen-size 930px */
 
@@ -633,6 +632,13 @@ body.showCart .container{
     
     .navbar{
         width: 100vw;
+        background-color: #3b82f6;
+        display: grid;
+        grid-template-columns: 1fr 40px 55px 40px 65px;
+        gap: 10px;
+        justify-content: end;
+
+        padding: 1rem;
 
     }
     .container{
@@ -703,10 +709,11 @@ body.showCart .container{
         width: 100vw;
         background-color: #3b82f6;
         display: grid;
-        grid-template-columns: 0.7fr 40px 40px 65px;
+        grid-template-columns: 0.7fr 40px 55px 40px 65px;
         gap: 5px;
         align-items: center;
         padding: 1rem;
+        
 
     }
     .container{

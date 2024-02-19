@@ -28,7 +28,7 @@ body{
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 70px .7fr 1fr;
+    grid-template-rows: 70px .7fr 1fr 20px;
 }
 
 /* Navbar -> Grid first row */
@@ -55,6 +55,11 @@ body{
 /* Category Container -> Grid third row */
 .categories-container{
     grid-row: 3/span 1;
+}
+.footer{
+    grid-row: 4/span 1;
+    color: var(--white);
+    /* text-align: center; */
 }
 
 /* Set navbar grid 3 columns */
@@ -158,6 +163,17 @@ body{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+}
+/* footer copyrights */
+.footer a{
+    color: var(--white);
+    text-align: center;
+}
+.copyright{
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    background-color: #111;
 }
 /* --------index.html----------- */
 /* ------------END----------- */

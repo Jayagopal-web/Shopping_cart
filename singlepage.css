@@ -309,7 +309,7 @@ body.showCart .container{
     justify-content: center;
     text-decoration: none;
 }
-.cartTab button,a{
+.cartTab button, cartTaba{
     background-color: #E8BC0E;
     border: none;
     font-family: Poppins;
@@ -366,11 +366,10 @@ body.showCart .container{
     font-weight: 600;
     
 }
-
-
-
-
-
+.logo a{
+    text-decoration: none;
+    color: var(--white);
+    }
 /* Review section  --> */
 
 .rating-box {

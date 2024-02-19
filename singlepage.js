@@ -17,7 +17,9 @@ let cart = [];
 let totprice=0;
 let total = 0;
 let fin = 0;
+let cartchk ;
 let dataset_id ;
+const checkout =document.getElementById("checkout")
 const total_price = document.getElementById("total-price")
 const tot = document.getElementById("tot")
 const check_final = document.getElementById("check-final")
@@ -205,6 +207,7 @@ const addCartToHTML = () => {
             }
             localStorage.setItem('Total', JSON.stringify(fin));
         }
+        checkCartitems()
     }
        
     if(sessionId!=null){
@@ -242,6 +245,9 @@ const changeQuantityCart = (product_id, type) => {
                     tot.innerText= ''
                     total_price.innerText=''
                     fin=0
+                    total=0
+                    checkCartitems()
+
                     localStorage.setItem('Total', JSON.stringify(fin));
                 }
                 break;
@@ -250,6 +256,21 @@ const changeQuantityCart = (product_id, type) => {
     addCartToHTML();
     addCartToMemory();
 }
+//  assigning checkout based on total value
+
+function checkCartitems(){
+    
+    if(total>0){
+        checkout.href="checkout.html"
+    
+    }else{
+        checkout.href="#"
+    }
+}
+checkCartitems()
+
+
+
 
 // Function to initialize the app
 const initApp = () => {

@@ -122,3 +122,13 @@ p{
 .inputBox.error input{
   border-color: rgb(248, 4, 4);
 }
+#home{
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  font-size: 1.3rem;
+  
+}
+
+  

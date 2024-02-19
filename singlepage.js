@@ -123,6 +123,7 @@ addCart.addEventListener('click', () => {
     // if user dosen't login it will alert
     
     if(login=='active'){
+        alert("Successfully added");
         addToCart(productId);
             addCartToHTML();
 

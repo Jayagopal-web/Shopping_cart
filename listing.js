@@ -47,6 +47,7 @@ const page = pageName.split('.')[0];
 
 //Using this to store the price of the products
 let priceArr=[];
+let catArr=[];
 const all=document.getElementById("All");
 const def=document.getElementById("Default");
 
@@ -105,10 +106,10 @@ searchCategory(productCategory);
 
 function sendValue(category){
     productCategory = category;         //assign user selected category in productCategory
-
+    console.log(category)
     window.location.href = `./listing.html?productCategory=${productCategory}`;
     
-    // searchCategory(productCategory);
+     searchCategory(productCategory);
 }
 
 
@@ -145,7 +146,7 @@ function searchCategory(category) {
                     const price = document.createElement('h3');
                     price.innerText = `$${element.price}`;
                     //we store this price and id for sorting purposes.
-                    let priId = { price: element.price, id: element.id };
+                    let priId={price:element.price,id:element.id,title:element.title,brand:element.brand};
                     priceArr.push(priId);
                     cardDiv.appendChild(price);
     
@@ -196,8 +197,9 @@ function searchCategory(category) {
         // create a h5 tag and set the inner text 'Price' to append to the parent div
         const price = document.createElement('h3');
         price.innerText = `$${element.price}`;
-        let priId={price:element.price,id:element.id}
+        let priId={price:element.price,id:element.id,title:element.title,brand:element.brand};
         priceArr.push(priId);
+        catArr.push(priId);
         cardDiv.appendChild(price);
 
         // Create a span tag and set the inner text 'Discount' to append to the parent div.
@@ -216,12 +218,8 @@ function searchCategory(category) {
     }
     //else is used to stipulate all the items
     else{
-        const productContainer1 = document.getElementById('listing-container');
-        // productContainer.innerHTML = "";
-        while(productContainer1.firstChild){
-            productContainer1.removeChild(productContainer1.firstChild);
-            console.log("remove");
-        }
+        const productContainer1=document.getElementById("listing-container");
+        productContainer1.innerHTML = "";
         fetch(`https://dummyjson.com/products?limit=100`)
         .then(res => res.json())
         .then((data) => {
@@ -241,7 +239,7 @@ function searchCategory(category) {
         const price = document.createElement('h3');
         price.innerText = `$${element.price}`;
         //here we store the id,price to sorting based on price
-        let priId={price:element.price,id:element.id}
+        let priId={price:element.price,id:element.id,title:element.title,brand:element.brand};
         priceArr.push(priId);
         cardDiv.appendChild(price);
 
@@ -251,7 +249,7 @@ function searchCategory(category) {
         discount.style.fontWeight = '500';
         cardDiv.appendChild(discount);
 
-        productContainer1.appendChild(cardDiv);
+        productContainer.appendChild(cardDiv);
 
         cardDiv.addEventListener('click', () => singleProduct(element.id));
         });
@@ -361,23 +359,45 @@ const txtSearch = document.querySelector("#txtSearch");
 txtSearch.addEventListener('keyup', (e) => {
     const value = e.target.value.toLowerCase().trim();
     if (value) {
+        if(productCategory !== "All"){
         //this is used to store all the matching items price and id.
         let searchprod=[];
-        //we filter based on category/brand/title
-        Aproduct.filter((prod) => {
-            return (prod.title.toLowerCase().includes(value) || prod.category.toLowerCase().includes(value) || prod.brand.toLowerCase().includes(value));
+
+        //we filter based on brand/title
+        //catArr has all the values of particular category
+        catArr.filter((prod) => {
+            console.log(prod.title.toLowerCase().includes(value),prod.title)
+            return (prod.title.toLowerCase().includes(value) || prod.brand.toLowerCase().includes(value));
         }).forEach((prod)=>{
             let val={price:prod.price,id:prod.id};
             searchprod.push(val);
         });
+         console.log(searchprod)   
         //and we send the array to searchCategory to display the filtered items
         searchCategory(searchprod)
-        all.selected = true;
-        def.selected = true;
-    } else {
-        // If search input is empty, display all products
-        searchCategory("All");
-        all.selected = true;
-        def.selected = true;
+    }
+     else {
+        console.log(Aproduct)
+        let searchprod=[];
+        //we filter based on brand/title
+        Aproduct.filter((prod) => {
+            console.log(prod.title.toLowerCase().includes(value),prod.title)
+            return (prod.title.toLowerCase().includes(value) || prod.brand.toLowerCase().includes(value));
+        }).forEach((prod)=>{
+            let val={price:prod.price,id:prod.id};
+            searchprod.push(val);
+        });
+         console.log(searchprod)   
+        //and we send the array to searchCategory to display the filtered items
+        searchCategory(searchprod)
+    }
+    }
+    else{
+        if(productCategory !== "All"){
+            searchCategory(catArr)
+        }
+        else{
+            searchCategory("All")
+        }
     }
 });

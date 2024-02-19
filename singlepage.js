@@ -6,7 +6,7 @@ let description = document.getElementById("description");
 let addCart = document.querySelector(".add-cart");
 let price1 = document.getElementById("price");
 let discount = document.getElementById("discount");
-let imageListContainer = document.querySelector(".product-image-slider"); // Updated to use the product-image-slider class
+let imageListContainer = document.querySelector(".product-image-slider"); 
 let listCartHTML = document.querySelector('.listCart');
 let iconCart = document.querySelector('.icon-cart');
 let iconCartSpan = document.querySelector('.icon-cart span');
@@ -118,6 +118,8 @@ if (productId) {
 addCart.addEventListener('click', () => {
 
 
+    // if user dosen't login it will alert
+    
     if(login=='active'){
         addToCart(productId);
             addCartToHTML();

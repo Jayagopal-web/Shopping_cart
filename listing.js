@@ -84,18 +84,34 @@ const categoriesContainer = document.getElementById("categories-container");
                 price.innerText = `From $${lowp}`
                 price.style.fontWeight = '500';
                 cardDiv.append(price);
-
-                // last append the parent div to Categories container
-                categoriesContainer.appendChild(cardDiv);
-
-                // When the user clicks the product card, it return what product category they clicked. 
-                cardDiv.addEventListener('click', () => sendValue(element));
             });
+
+            // create div tag and set inner Text 'category' to append to parent div
+            const category = document.createElement('div');
+            category.innerText = `${element.charAt(0).toUpperCase() + element.slice(1).toLowerCase()}`;
+            cardDiv.appendChild(category);
+
+            // last append the parent div to Categories container
+            categoriesContainer.appendChild(cardDiv);
+
+            // When the user clicks the product card, it return what product category they clicked. 
+            cardDiv.addEventListener('click', () => sendValue(element));
         });
     });
 }
 
 // ---------------- Listing Page(listing.html)----------------
+
+// Hamburger toggle
+if(page!='index'){
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".filters");
+
+    hamburger.addEventListener('click', ()=>{
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    })
+}
 
 // Save user selected product category in this variable form URL
 const searchParams = new URLSearchParams(window.location.search);

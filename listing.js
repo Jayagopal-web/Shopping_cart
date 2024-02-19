@@ -1,6 +1,7 @@
 // ---------------- Home Page(index.html)----------------
 
 // session storage
+const userId = sessionStorage.getItem("ID");
 const fname = sessionStorage.getItem("firstName");
 const lname = sessionStorage.getItem("lastName");
 const login = sessionStorage.getItem("login");
@@ -20,69 +21,79 @@ if(login=='active'){
     userProfile.style.display = "block";
     loginBtn.innerText = 'Logout';
 }else{
-    // userProfile.style.display = "none";
     loginBtn.innerText = 'Login';
 }
 
 // Login Button
 document.getElementById('login').addEventListener('click', ()=>{
+    // destory all session storage
+    sessionStorage.clear();
+    
+    // change login to 'inactive' in formData Local Storage.
+    if(login=='active'){
+        let formData = JSON.parse(localStorage.getItem('formData'))
+        console.log(formData);
+        formData[userId].login = 'inactive'
+        localStorage.setItem('formData', JSON.stringify(formData));
+    }
     window.location.href = "./logIn.html";
 }); 
-// login logic need to improve.
+
+// Get the URL
+const url = window.location.href;
+const parts = url.split('/');
+const pageName = parts[parts.length - 1];
+const page = pageName.split('.')[0];
 
 //Using this to store the price of the products
 let priceArr=[];
 const all=document.getElementById("All");
 const def=document.getElementById("Default");
 
-
+// This will only render on the index page.
+if(page=='index'){
 // get categories container to display products
 const categoriesContainer = document.getElementById("categories-container");
 
-// fetch product categories, it return array of categories
-fetch('https://dummyjson.com/products/categories')
-.then((res) => res.json())
-.then((categories) => {
-    categories.forEach(element => {
-        // create parent div
-        const cardDiv = document.createElement('div');
-        cardDiv.classList.add('card');
-        
-        // fetch each category of first product.
-        fetch(`https://dummyjson.com/products/category/${element}`)
-        .then(res => res.json())
-        .then((data) => {
-            //here used a array to store the price 
-            let low=[];
-            let d=data.products.forEach((prod)=> {low.push(prod.price)});
+    // fetch product categories, it return array of categories
+    fetch('https://dummyjson.com/products/categories')
+    .then((res) => res.json())
+    .then((categories) => {
+        categories.forEach(element => {
+            // create parent div
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add('card');
             
-            //and we get the lowest price from the array
-            let lowp=Math.min.apply(null,low)
-            // create img tag and set src to append to parent div
-            const img = document.createElement('img');
-            img.src = `${data.products[0].thumbnail}`;
-            cardDiv.append(img);
+            // fetch each category of first product.
+            fetch(`https://dummyjson.com/products/category/${element}`)
+            .then(res => res.json())
+            .then((data) => {
+                //here used a array to store the price 
+                let low=[];
+                let d=data.products.forEach((prod)=> {low.push(prod.price)});
+                
+                //and we get the lowest price from the array
+                let lowp=Math.min.apply(null,low)
+                // create img tag and set src to append to parent div
+                const img = document.createElement('img');
+                img.src = `${data.products[0].thumbnail}`;
+                cardDiv.append(img);
 
-            // create div tag and set inner Text 'price' to append to parent div
-            const price = document.createElement('div');
-            price.innerText = `From $${lowp}`
-            price.style.fontWeight = '500';
-            cardDiv.append(price);
+                // create div tag and set inner Text 'price' to append to parent div
+                const price = document.createElement('div');
+                price.innerText = `From $${lowp}`
+                price.style.fontWeight = '500';
+                cardDiv.append(price);
+
+                // last append the parent div to Categories container
+                categoriesContainer.appendChild(cardDiv);
+
+                // When the user clicks the product card, it return what product category they clicked. 
+                cardDiv.addEventListener('click', () => sendValue(element));
+            });
         });
-
-        // create div tag and set inner Text 'Category' to append to parent div
-        const categoryDiv = document.createElement('div');
-        categoryDiv.innerText = `${element}`;
-        cardDiv.append(categoryDiv);
-
-        // last append the parent div to Categories container
-        categoriesContainer.appendChild(cardDiv);
-
-        // When the user clicks the product card, it return what product category they clicked. 
-        cardDiv.addEventListener('click', () => sendValue(element));
     });
-});
-
+}
 
 // ---------------- Listing Page(listing.html)----------------
 
@@ -131,7 +142,7 @@ function searchCategory(category) {
                     productName.innerText = `${element.title}`;
                     cardDiv.appendChild(productName);
     
-                    const price = document.createElement('h5');
+                    const price = document.createElement('h3');
                     price.innerText = `$${element.price}`;
                     //we store this price and id for sorting purposes.
                     let priId = { price: element.price, id: element.id };
@@ -227,7 +238,7 @@ function searchCategory(category) {
         productName.innerText = `${element.title}`;
         cardDiv.appendChild(productName);
 
-        const price = document.createElement('h5');
+        const price = document.createElement('h3');
         price.innerText = `$${element.price}`;
         //here we store the id,price to sorting based on price
         let priId={price:element.price,id:element.id}

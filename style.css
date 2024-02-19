@@ -114,17 +114,14 @@ body{
     color: var(--bg-color);
 }
 
-/* Search bar */
-.search-bar {
+/* Tagline style */
+.tagline {
     text-align: center;
     width: 100%;
-}
-.search-bar input{
-    
-    font-size: 1.2rem;
-    padding: 10px;
-    border-radius: 10px;
-    width: 40%;
+    font-size: 1.3rem;
+    font-weight: 400;
+    /* border: 2px solid blue; */
+    /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
 }
 
 /* individual product card style */
@@ -165,6 +162,7 @@ body{
 /* --------index.html----------- */
 /* ------------END----------- */
 
+
 /* ------------START----------- */
 /* --------listing.html----------- */
 /* Grid 2 rows -> Navbar & listing container */
@@ -185,6 +183,15 @@ body{
 .navbar-search{
     background-color: var(--bg-color);
     color: var(--white);
+}
+.search-bar{
+    text-align: center;
+}
+.search-bar input{ 
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 10px;
+    width: 90%;
 }
 
 .user-profile{
@@ -213,6 +220,7 @@ body{
     padding: 1rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: min-content;
     gap: 20px;
 }
 
@@ -255,6 +263,20 @@ body{
     width: 100%;
     height: 300px;
     object-fit:cover;
+}
+/* Navigation button */
+.gotop{
+    position: fixed;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #3b82f6;
+    bottom: 40px;
+    right: 50px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    line-height: 45px;
 }
 /* --------listing.html----------- */
 /* ------------END----------- */
@@ -332,7 +354,9 @@ body{
 /* Navbar grid and logo */
 @media (max-width:550px) {
     .navbar-search{
-        grid-template-columns: 130px 1fr 60px;
+        grid-template-columns: 130px 1fr 80px;
+        padding: 0 .5rem;
+        gap: 5px;
     }
     .logo{
         font-size: 1.5rem;
@@ -345,16 +369,3 @@ body{
     }
 }
 /* --------listing.html(END)----------- */
-.gotop{
-    position: fixed;
-    width: 45px;
-    height: 45px;
-    border-radius: 10px;
-    background-color: #3b82f6;
-    bottom: 40px;
-    right: 50px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    line-height: 45px;
-}

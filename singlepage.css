@@ -1,15 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Comman Colors */
 :root {
     --bg-color: #3b82f6;
     --white: #ffF;
   }
 
+  /* Style for entire page */
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
+/* Style for navbar */
 .navbar{
     background-color: var(--bg-color);
     color: var(--white);
@@ -24,6 +29,7 @@
     padding: 1rem;
 }
 
+/* Style for profile round */
 .user-profile, .profile{
     margin-left: auto;
     display: none;
@@ -36,6 +42,7 @@
     padding: 10px;
     font-weight: 800;
 }
+
 
 .icon-cart svg{
 
@@ -55,6 +62,7 @@
     grid-column: 2/span 1;
 }
 
+/* Style for login button */
 .login-btn{
     grid-column: 4/ span 1;
 }
@@ -81,6 +89,7 @@
     top: -15px;
     
 }
+/* Style for all button */
 .btn{
     cursor: pointer;
     padding: .8rem;
@@ -93,6 +102,7 @@
     color: var(--bg-color);
 }
 
+/* Style for container */
 .container{
     display: flex;
     position: relative;
@@ -101,20 +111,25 @@
     height: 100vh;
     max-width: 90vw;
 }
+
+/* Style for row  */
 .row{
     display: flex;
     gap: 20px;
 }
 
+/* Style for col box */
 .col-6{
     width: 50%;
 }
 
+/* Style for single-product box */
 .single-product{
     width: 1080px;
     position: relative;
 }
 
+/* style for product image */
 .single-product .product-image{
     width: 100%;
 }
@@ -134,6 +149,7 @@
     object-fit: contain;
 }
 
+/* style for image-slider */
 .product-image-slider{
     display: flex;
     gap: 10px;
@@ -149,7 +165,7 @@
 }
 
 
-
+/* style for product title */
 
 .product-title{
     margin-top: 100px;
@@ -162,6 +178,8 @@
     letter-spacing: -0.02rem;
 }
 
+/* style for product price */
+
 .product-price{
     display: flex;
     position: relative;
@@ -173,6 +191,7 @@
     font-weight: 700;
 }
 
+/* style for discount */
 .product-price #discount{
     font-size: 22px;
     font-weight: 500;
@@ -180,6 +199,8 @@
     margin-left: 12px;
 }
 
+
+/* style for descripition */
 .product-details{
     margin: 10px 0;
 }
@@ -193,7 +214,7 @@
     line-height: 1.2rem;
 }
 
-
+/* style for divider */
 .divider{
     display: block;
     height: 1px;
@@ -202,10 +223,12 @@
     margin: 20px 0;
 }
 
+/* style for button */
 .product-btn-group{
     display: flex;
     gap: 15px;
 }
+
 .product-btn-group .button{
     display: flex;
     align-items: center;
@@ -217,7 +240,7 @@
 }
 
 
-
+/* style for add-cart button */
 
 .product-btn-group .add-cart{
     
@@ -229,9 +252,6 @@
     cursor: pointer;
 }
 
-.product-btn-group .buy-now i{
-    font-size: 20px;
-}
 
 
 
@@ -399,7 +419,7 @@ body.showCart .container{
     margin: 4% 30%;
     width: 40%;
     height: 16%;
-    padding: 5px;
+    padding: 20px;
     border-radius: 15px;
  }
 #openReviewPopup:hover{
@@ -534,7 +554,10 @@ body.showCart .container{
     font-size: 30px;
     padding-left: 2rem;
     font-weight: 600;
+
 }
+
+/* Style for screen-size 1200px */
 @media only screen and (max-width: 1200px){
     .rating-box{
         width: 40%;
@@ -545,6 +568,9 @@ body.showCart .container{
     }
 
 }
+
+/* style for screen-size 930px */
+
 @media only screen and (max-width: 930px){
     .container{
         padding: 20px;
@@ -562,7 +588,6 @@ body.showCart .container{
         width: 100%;
         margin-top: -10%;
         margin-bottom: 20%;
-        /* display: block; */
     }
     .single-product{
         width: 100%;
@@ -617,7 +642,6 @@ body.showCart .container{
 @media screen and (max-width:1068px){
     .single-product{
         width: 1080px;
-        /* height: 400px; */
         margin-top: 10%;
         position: relative;
         margin-left: 5%;
@@ -625,6 +649,7 @@ body.showCart .container{
 
 }
 
+/* style for screen size 550px */
 
 @media screen and (max-width:550px){
     
@@ -660,14 +685,13 @@ body.showCart .container{
         gap: 10px;
         justify-content: center;
         align-items: center;
-        /* margin-left: 50%; */
     }
     .rating-box{
         width: 75%;
     }
    
 }
-
+/* style for screen-size 320px */
 @media screen and (max-width:320px){
     .rating-box{
         width: 100%;

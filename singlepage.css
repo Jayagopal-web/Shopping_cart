@@ -370,7 +370,30 @@ body.showCart .container{
     text-decoration: none;
     color: var(--white);
 }
-
+/* back to top btn */
+.gotop{
+    position: fixed;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #3b82f6;
+    bottom: 40px;
+    right: 50px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    line-height: 45px;
+}
+/* footer copyrights */
+.copyright{
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    background-color: #111;
+}
+.copyright a{
+    color: var(--white);
+}
 
 
 

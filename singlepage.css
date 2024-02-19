@@ -196,7 +196,7 @@
     font-size: 22px;
     font-weight: 500;
     color: black;
-    margin-left: 12px;
+    /* margin-left: 12px; */
 }
 
 
@@ -227,6 +227,7 @@
 .product-btn-group{
     display: flex;
     gap: 15px;
+    margin-bottom: 10px;
 }
 
 .product-btn-group .button{
@@ -237,6 +238,7 @@
     padding: 10px 24px;
     font-size: 16px;
     font-weight: 500;
+    
 }
 
 
@@ -307,7 +309,7 @@ body.showCart .container{
     justify-content: center;
     text-decoration: none;
 }
-.cartTab button, .cartTab a{
+.cartTab button,a{
     background-color: #E8BC0E;
     border: none;
     font-family: Poppins;
@@ -315,7 +317,6 @@ body.showCart .container{
     font-weight: 500;
     cursor: pointer;
 }
-
 .cartTab .close{
     background-color: #eee;
 }
@@ -365,11 +366,7 @@ body.showCart .container{
     font-weight: 600;
     
 }
-/* Logo style */
-.logo a{
-    text-decoration: none;
-    color: var(--white);
-}
+
 
 
 
@@ -377,11 +374,7 @@ body.showCart .container{
 /* Review section  --> */
 
 .rating-box {
-    /* font-family: "Roboto", sans-serif; */
     padding:10px;
-    margin-top:-13.5%  ;
-    margin-left:46.5%  ;
-    width:50%;
    display: flex;
    flex-direction: column;
    border-radius: 2px;
@@ -405,7 +398,7 @@ body.showCart .container{
 }
 .rating-box p{
     margin-left: 25px;
-    color:var(--bg-color);
+    color:rgb(6, 6, 128);
 }
 #star i.active{
     color: gold;
@@ -418,13 +411,13 @@ body.showCart .container{
     margin-left: 0px;
     font-size: 15px;
     font-weight: 450;
+    text-align: center;
 }
 #openReviewPopup{
     cursor: pointer;
-    margin: 4% 30%;
-    width: 40%;
-    height: 16%;
-    padding: 20px;
+    width: 80%;
+    margin: 10px 10%;
+    padding: 7px;
     border-radius: 15px;
  }
 #openReviewPopup:hover{
@@ -546,9 +539,9 @@ body.showCart .container{
 .customer-say{
     padding: 1%;
     margin:  1%;
-    width: 100%;
-    margin-left: 10px;
-    margin-right: 10px;
+    width: 80%;
+    margin-left: 7%;
+    margin-right: 10%;
     border-radius: 5px;
 }    
 #tot{
@@ -560,13 +553,8 @@ body.showCart .container{
 
 /* Style for screen-size 1200px */
 @media only screen and (max-width: 1200px){
-    .rating-box{
-        width: 40%;
-        margin-top:-17%  ;
-        margin-left: 50%;
 
-      
-    }
+
 
 }
 
@@ -617,10 +605,7 @@ body.showCart .container{
         gap: 10px;
         justify-content: center;
     }
-    .rating-box{
-        margin-left: 18%;
-        width: 60%;
-    }
+    
 
 }
 /* cart function media querry */
@@ -680,9 +665,7 @@ body.showCart .container{
         justify-content: center;
         align-items: center;
     }
-    .rating-box{
-        width: 75%;
-    }
+    
     .cartTab{
         width: 100%;
         height: 100vh;
@@ -703,7 +686,12 @@ body.showCart .container{
         text-align: center;
         align-items: center;
     }
-   
+    .ratebox{
+        width: 100%;
+    }
+    #rateno{
+        font-weight:100 ;
+    }
 }
 
 @media screen and (max-width:350px){
@@ -711,6 +699,7 @@ body.showCart .container{
         width: 100%;
     }
     
+  
     .navbar{
         width: 100vw;
         background-color: #3b82f6;
@@ -724,9 +713,9 @@ body.showCart .container{
     .container{
      
        display: flex;
-       position: relative;
-       align-items: center;
-       justify-content: flex-start;
+       flex-wrap: wrap;
+       /* align-items: center;
+       justify-content: flex-start; */
        height: auto;
        width: 70vw;
         
@@ -757,9 +746,7 @@ body.showCart .container{
         justify-content: center;
         align-items: center;
     }
-    .rating-box{
-        width: 75%;
-    }
+   
     
     .cartTab{
         width: 100%;
@@ -779,5 +766,11 @@ body.showCart .container{
         gap: 5px;
         text-align: center;
         align-items: center;
+    }
+    .product-price h2{
+        font-size: 18px;   
+    }
+    .ratebox{
+        width: 120%;
     }
 }

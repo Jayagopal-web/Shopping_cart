@@ -214,7 +214,27 @@ body{
 .listing-container{
     grid-column: 2/span 1;
 }
-
+/* Hamburger */
+.navMenu{
+    max-height: 10vh;
+    padding: 1rem;
+    display: none;
+    justify-content: flex-end;
+    background-color: var(--white);
+}
+.hamburger{
+    cursor: pointer; 
+    margin-right: 15px;
+}
+.bar{
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: black;
+}
 /* Listing container(Product container) set column 3 */
 .listing-container{
     padding: 1rem;
@@ -310,7 +330,7 @@ body{
         grid-template-columns: repeat(3, 1fr);
     }
     .welcome-text{
-        font-size: 1.9rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -335,13 +355,18 @@ body{
         grid-template-columns: 1fr 3fr;
     }
 }
+@media (max-width:700px) {
+    .listing-container{
+        grid-template-columns: 1fr;
+    }
+}
 @media (max-width: 650px){
     .listing {
         grid-template-columns: 155px 1fr;
     }
-    .listing-container{
+    /* .listing-container{
         grid-template-columns: 1fr;
-    }
+    } */
     .card{
         padding: .5rem;
     }
@@ -366,6 +391,52 @@ body{
     }
     .login-btn-listing{
         grid-column: 3 /span 1;
+    }
+}
+
+/* Hamburger toggle */
+@media (max-width:550px) {
+    .navMenu{
+        display: flex;
+    }
+
+    .hamburger.active .bar:nth-child(2){
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1){
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3){
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    .listing{
+        gap: 0;
+        transition: all 1s;
+        grid-template-rows: min-content;
+        grid-template-columns: 1fr;
+        /* transition: 0.3s; */
+    }
+    #category, .price {
+        margin-top: 0;
+        padding: 0;
+    }
+    .listing-container{
+        grid-column: 1/span 1;
+        /* transition: 0.3s; */
+    }
+
+    .filters{
+        position: fixed;
+        left: -100%;
+        /* transition: 0.3s; */
+        width: 100%;
+    }
+
+    .filters.active{
+        position: static;
+        grid-row: 2 /span 1;
+        /* transition: 0.3s; */
     }
 }
 /* --------listing.html(END)----------- */

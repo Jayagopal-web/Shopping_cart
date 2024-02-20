@@ -1,4 +1,6 @@
 
+
+const form = document.querySelector('#form');
 const username = document.querySelector('#username');
 const email = document.querySelector('#email');
 const address = document.querySelector('#address');
@@ -56,7 +58,7 @@ localStorage.setItem(Total, "0");
 
 
 function validateInput(){
-const form = document.querySelector('#form');
+
 const usernameVal = username.value.trim();
 const emailVal = email.value.trim();
 const addressVal = address.value.trim();

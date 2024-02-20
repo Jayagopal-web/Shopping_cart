@@ -142,6 +142,7 @@ p{
   justify-content: center;
   padding-top: 1rem;
   font-size: 1.3rem;
+  font-weight: 500;
   
 }
 .footer{
@@ -150,4 +151,18 @@ p{
 .footer a{
   color: #ccc;
 }
+.backbtn{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#back{
+  background-color: #fff;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  font-size: 1.4rem;
+  font-weight: 500;
   
+}

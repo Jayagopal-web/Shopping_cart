@@ -227,7 +227,12 @@ console.log(cart)
 console.log(sessionStorage.getItem('ID'))
 
 }
+// function for back btn to go back
 
+document.getElementById('back').addEventListener('click', ()=>{
+    window.history.back();
+
+})
 
 
 

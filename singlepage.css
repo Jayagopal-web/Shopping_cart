@@ -668,6 +668,10 @@ body.showCart .container{
         position: relative;
         margin-left: 5%;
     }
+    .product-image-slider{
+        display: flex;
+        flex-wrap: wrap;
+    }
 
 }
 

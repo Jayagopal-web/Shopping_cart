@@ -130,5 +130,10 @@ p{
   font-size: 1.3rem;
   
 }
-
+.footer{
+  background-color: #000;
+}
+.footer a{
+  color: #ccc;
+}
   

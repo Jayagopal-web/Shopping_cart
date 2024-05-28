@@ -57,7 +57,8 @@ if(page=='index'){
 const categoriesContainer = document.getElementById("categories-container");
 
     // fetch product categories, it return array of categories
-    fetch('https://dummyjson.com/products/categories')
+    // fetch('https://dummyjson.com/products/categories')
+    fetch('https://dummyjson.com/products/category-list')
     .then((res) => res.json())
     .then((categories) => {
         categories.forEach(element => {
